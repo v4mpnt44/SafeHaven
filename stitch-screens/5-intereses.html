@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeHaven - Personaliza tu Protección</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#63597c",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-variant": "#e6e0e9",
+                        "on-primary-fixed": "#22005d",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "surface-container-low": "#f8f2fa",
+                        "tertiary-fixed": "#ffdf93",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "background": "#fdf7ff",
+                        "secondary-container": "#e1d4fd",
+                        "on-secondary-container": "#645a7d",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-secondary-fixed": "#1f1635",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "tertiary": "#765b00",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-tint": "#6750a4",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#cbc4d2",
+                        "inverse-surface": "#322f35",
+                        "tertiary-container": "#c9a74d",
+                        "on-error-container": "#93000a",
+                        "outline": "#7a7582",
+                        "surface-container-high": "#ece6ee",
+                        "on-background": "#1d1b20",
+                        "inverse-on-surface": "#f5eff7",
+                        "surface-dim": "#ded8e0",
+                        "primary-container": "#6750a4",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#503d00",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "surface": "#fdf7ff",
+                        "primary": "#4f378a",
+                        "on-primary-container": "#e0d2ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "inverse-primary": "#cfbcff",
+                        "surface-bright": "#fdf7ff",
+                        "on-surface": "#1d1b20",
+                        "surface-container": "#f2ecf4",
+                        "on-surface-variant": "#494551",
+                        "surface-container-highest": "#e6e0e9",
+                        "primary-fixed": "#e9ddff",
+                        "ice-blue": "#B2FFFF",
+                        "navy": "#014BA0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "4px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "stack-md": "12px",
+                        "stack-lg": "24px",
+                        "unit": "8px",
+                        "safe": "env(safe-area-inset-bottom)"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-emergency": ["Anton"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-emergency": ["72px", { "lineHeight": "72px", "letterSpacing": "0.05em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        .brutalist-shadow {
+            box-shadow: 4px 4px 0px rgba(1, 75, 160, 1); /* Navy shadow */
+        }
+        .brutalist-shadow-hover:hover {
+            box-shadow: 6px 6px 0px rgba(1, 75, 160, 1);
+            transform: translate(-2px, -2px);
+        }
+        .brutalist-shadow-active {
+            box-shadow: 2px 2px 0px rgba(1, 75, 160, 1);
+            transform: translate(2px, 2px);
+        }
+        /* Custom Checkbox styles */
+        .interest-checkbox:checked + div {
+            border-color: #014BA0; /* Navy */
+            background-color: #e0d2ff; /* primary-container approx or ice-blue tint */
+        }
+        .interest-checkbox:checked + div .hexagon {
+            background-color: #014BA0;
+            color: #B2FFFF;
+        }
+        .interest-checkbox:checked + div .check-icon {
+            opacity: 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-colors">
+<div class="flex justify-between items-center px-container-margin py-unit h-16 max-w-3xl mx-auto w-full">
+<button aria-label="Atrás" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-display-emergency text-headline-md tracking-wider text-primary">SAFEHAVEN</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-container-margin max-w-3xl mx-auto w-full flex flex-col gap-stack-lg">
+<!-- Header Section -->
+<section class="text-center md:text-left flex flex-col gap-stack-sm mb-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-on-surface text-navy">Personaliza tu Protección</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-prose">
+                Selecciona los temas que más te interesan para recibir alertas personalizadas.
+            </p>
+</section>
+<!-- Interest Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<label class="relative cursor-pointer group">
+<input class="interest-checkbox sr-only peer" type="checkbox"/>
+<div class="h-full flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-outline-variant rounded-xl brutalist-shadow brutalist-shadow-hover transition-all duration-200">
+<div class="hexagon w-16 h-16 bg-surface-variant flex items-center justify-center mb-3 transition-colors duration-200 text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<span class="font-headline-md text-base text-center leading-tight text-navy">Vigilancia<br/>Barrial</span>
+<div class="absolute top-2 right-2 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center check-icon opacity-0 transition-opacity duration-200 text-navy">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+</label>
+<!-- Card 2 -->
+<label class="relative cursor-pointer group">
+<input class="interest-checkbox sr-only peer" type="checkbox"/>
+<div class="h-full flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-outline-variant rounded-xl brutalist-shadow brutalist-shadow-hover transition-all duration-200">
+<div class="hexagon w-16 h-16 bg-surface-variant flex items-center justify-center mb-3 transition-colors duration-200 text-error">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<span class="font-headline-md text-base text-center leading-tight text-navy">Alertas de<br/>Emergencia</span>
+<div class="absolute top-2 right-2 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center check-icon opacity-0 transition-opacity duration-200 text-navy">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+</label>
+<!-- Card 3 -->
+<label class="relative cursor-pointer group">
+<input class="interest-checkbox sr-only peer" type="checkbox"/>
+<div class="h-full flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-outline-variant rounded-xl brutalist-shadow brutalist-shadow-hover transition-all duration-200">
+<div class="hexagon w-16 h-16 bg-surface-variant flex items-center justify-center mb-3 transition-colors duration-200 text-tertiary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">construction</span>
+</div>
+<span class="font-headline-md text-base text-center leading-tight text-navy">Reportes<br/>Viales</span>
+<div class="absolute top-2 right-2 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center check-icon opacity-0 transition-opacity duration-200 text-navy">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+</label>
+<!-- Card 4 -->
+<label class="relative cursor-pointer group">
+<input class="interest-checkbox sr-only peer" type="checkbox"/>
+<div class="h-full flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-outline-variant rounded-xl brutalist-shadow brutalist-shadow-hover transition-all duration-200">
+<div class="hexagon w-16 h-16 bg-surface-variant flex items-center justify-center mb-3 transition-colors duration-200 text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<span class="font-headline-md text-base text-center leading-tight text-navy">Puntos de<br/>Refugio</span>
+<div class="absolute top-2 right-2 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center check-icon opacity-0 transition-opacity duration-200 text-navy">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+</label>
+<!-- Card 5 -->
+<label class="relative cursor-pointer group">
+<input class="interest-checkbox sr-only peer" type="checkbox"/>
+<div class="h-full flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-outline-variant rounded-xl brutalist-shadow brutalist-shadow-hover transition-all duration-200">
+<div class="hexagon w-16 h-16 bg-surface-variant flex items-center justify-center mb-3 transition-colors duration-200 text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">directions_walk</span>
+</div>
+<span class="font-headline-md text-base text-center leading-tight text-navy">Caminatas<br/>en Flock</span>
+<div class="absolute top-2 right-2 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center check-icon opacity-0 transition-opacity duration-200 text-navy">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+</label>
+<!-- Card 6 -->
+<label class="relative cursor-pointer group">
+<input class="interest-checkbox sr-only peer" type="checkbox"/>
+<div class="h-full flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-outline-variant rounded-xl brutalist-shadow brutalist-shadow-hover transition-all duration-200">
+<div class="hexagon w-16 h-16 bg-surface-variant flex items-center justify-center mb-3 transition-colors duration-200 text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<span class="font-headline-md text-base text-center leading-tight text-navy">Seguridad<br/>Escolar</span>
+<div class="absolute top-2 right-2 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center check-icon opacity-0 transition-opacity duration-200 text-navy">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+</label>
+</section>
+</main>
+<!-- Fixed Footer Action -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md p-container-margin z-40 border-t border-outline-variant/30">
+<div class="max-w-3xl mx-auto flex">
+<button class="w-full bg-navy text-on-primary font-headline-md text-headline-md py-4 rounded-xl flex items-center justify-center gap-2 brutalist-shadow active:brutalist-shadow-active transition-transform duration-100 hover:bg-navy/90">
+                Continuar
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</footer>
+<script>
+        // Simple logic to add styling specifically for checked state if CSS sibling selectors aren't enough for complex inner styling
+        document.querySelectorAll('.interest-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const container = this.nextElementSibling;
+                if(this.checked) {
+                    container.classList.add('bg-ice-blue/20', 'border-navy');
+                    container.classList.remove('border-outline-variant', 'bg-surface-container-lowest');
+                } else {
+                    container.classList.remove('bg-ice-blue/20', 'border-navy');
+                    container.classList.add('border-outline-variant', 'bg-surface-container-lowest');
+                }
+            });
+        });
+    </script>
+</body></html>

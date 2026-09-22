@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Verificación - SafeHaven</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config Injection -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-surface": "#1d1b20",
+                      "tertiary": "#765b00",
+                      "on-secondary-fixed": "#1f1635",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#e9ddff",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#f2ecf4",
+                      "inverse-on-surface": "#f5eff7",
+                      "primary-container": "#6750a4",
+                      "tertiary-fixed": "#ffdf93",
+                      "tertiary-container": "#c9a74d",
+                      "secondary": "#63597c",
+                      "surface-container-high": "#ece6ee",
+                      "primary-fixed-dim": "#cfbcff",
+                      "primary": "#4f378a",
+                      "secondary-container": "#e1d4fd",
+                      "on-secondary-container": "#645a7d",
+                      "surface-dim": "#ded8e0",
+                      "inverse-surface": "#322f35",
+                      "on-surface-variant": "#494551",
+                      "outline": "#7a7582",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e6e0e9",
+                      "on-primary-fixed": "#22005d",
+                      "surface-variant": "#e6e0e9",
+                      "outline-variant": "#cbc4d2",
+                      "surface-bright": "#fdf7ff",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "primary-fixed": "#e9ddff",
+                      "background": "#fdf7ff",
+                      "inverse-primary": "#cfbcff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#503d00",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "surface-tint": "#6750a4",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#241a00",
+                      "surface": "#fdf7ff",
+                      "surface-container-low": "#f8f2fa",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "on-primary-container": "#e0d2ff",
+                      "on-background": "#1d1b20"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "12px",
+                      "stack-lg": "24px",
+                      "unit": "8px",
+                      "container-margin": "24px",
+                      "gutter": "16px",
+                      "stack-sm": "4px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-emergency": [
+                              "Anton"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-emergency": [
+                              "72px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Custom Brutalist Inputs */
+        .brutalist-input {
+            width: 3.5rem;
+            height: 4.5rem;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            border: 3px solid #1d1b20; /* High contrast black/dark gray */
+            border-radius: 0; /* Sharp corners */
+            background-color: #ffffff;
+            color: #1d1b20;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 4px 4px 0px 0px #1d1b20; /* Brutalist shadow */
+            outline: none;
+        }
+
+        .brutalist-input:focus {
+            border-color: #014BA0; /* Primary navy accent requested by user */
+            box-shadow: 4px 4px 0px 0px #014BA0;
+            transform: translate(-2px, -2px);
+        }
+        
+        /* Brutalist Button */
+        .brutalist-button {
+            border: 3px solid #1d1b20;
+            border-radius: 0;
+            box-shadow: 6px 6px 0px 0px #1d1b20;
+            transition: all 0.1s ease-in-out;
+        }
+        
+        .brutalist-button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0px 0px #1d1b20;
+        }
+        
+        /* Utility for requested color overrides */
+        .text-accent-navy { color: #014BA0; }
+        .bg-accent-navy { background-color: #014BA0; }
+        .border-accent-navy { border-color: #014BA0; }
+        
+        .bg-accent-sky { background-color: #B2FFFF; }
+        
+        /* Hide number input spinners */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface h-screen w-full flex flex-col font-body-md text-body-md antialiased overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Nav Shell Suppressed for Linear/Transactional Flow -->
+<!-- Top App Bar (Custom for Transactional) -->
+<header class="flex items-center justify-between px-gutter h-16 w-full fixed top-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md border-b-2 border-on-surface">
+<button class="p-2 -ml-2 text-on-surface hover:bg-surface-variant transition-colors active:scale-95 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-on-surface tracking-tight uppercase">SafeHaven</h1>
+<!-- Spacer to balance back button -->
+<div class="w-10"></div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col pt-24 pb-safe px-gutter max-w-md mx-auto w-full justify-between overflow-y-auto">
+<div class="flex flex-col gap-stack-lg">
+<!-- Header Text -->
+<div class="flex flex-col gap-stack-sm mt-8 relative">
+<!-- Decorative brutalist accent -->
+<div class="absolute -top-6 -left-2 w-12 h-12 bg-accent-sky opacity-50 -z-10 mix-blend-multiply"></div>
+<h2 class="font-headline-lg text-headline-lg-mobile text-on-surface uppercase tracking-tight leading-none mb-2">
+                    Verifica tu<br/>número
+                </h2>
+<p class="text-on-surface-variant max-w-[280px]">
+                    Hemos enviado un código de 6 dígitos a tu celular.
+                </p>
+</div>
+<!-- Verification Input Form -->
+<form class="flex flex-col gap-stack-lg mt-8" id="verification-form">
+<!-- 6-Digit Inputs -->
+<div class="flex justify-between w-full gap-2" id="otp-container">
+<input aria-label="Digit 1" autofocus="" class="brutalist-input" maxlength="1" pattern="\d*" type="number"/>
+<input aria-label="Digit 2" class="brutalist-input" maxlength="1" pattern="\d*" type="number"/>
+<input aria-label="Digit 3" class="brutalist-input" maxlength="1" pattern="\d*" type="number"/>
+<input aria-label="Digit 4" class="brutalist-input" maxlength="1" pattern="\d*" type="number"/>
+<input aria-label="Digit 5" class="brutalist-input" maxlength="1" pattern="\d*" type="number"/>
+<input aria-label="Digit 6" class="brutalist-input" maxlength="1" pattern="\d*" type="number"/>
+</div>
+<!-- Countdown -->
+<div class="flex items-center gap-2 mt-4 text-sm font-bold text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'wght' 700;">timer</span>
+<span>Reenviar código en <span class="text-on-surface" id="timer">00:59</span></span>
+</div>
+</form>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="mt-auto pt-8 pb-8 flex flex-col gap-4">
+<button class="w-full bg-accent-navy text-on-primary font-headline-md text-headline-md-mobile uppercase py-4 px-6 flex items-center justify-center gap-2 brutalist-button hover:opacity-90" type="button">
+<span>Verificar</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 700;">arrow_forward</span>
+</button>
+<div class="text-center">
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface underline decoration-2 underline-offset-4 transition-colors" type="button">
+                    ¿NECESITAS AYUDA?
+                </button>
+</div>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // OTP Input Logic
+            const inputs = document.querySelectorAll('#otp-container input');
+            
+            inputs.forEach((input, index) => {
+                // Focus styling class toggle
+                input.addEventListener('focus', () => {
+                    input.classList.add('border-accent-navy');
+                });
+                
+                input.addEventListener('blur', () => {
+                    input.classList.remove('border-accent-navy');
+                });
+
+                // Auto-advance logic
+                input.addEventListener('input', (e) => {
+                    // Ensure only 1 digit
+                    if (e.target.value.length > 1) {
+                        e.target.value = e.target.value.slice(0, 1);
+                    }
+                    
+                    // Move to next input if filled
+                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+
+                // Handle backspace to move to previous
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+                
+                // Allow paste
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pastedData = e.clipboardData.getData('text').slice(0, 6).replace(/\D/g, '');
+                    if(pastedData) {
+                        for(let i=0; i<pastedData.length; i++) {
+                            if(inputs[i]) {
+                                inputs[i].value = pastedData[i];
+                                if(i < inputs.length - 1) {
+                                    inputs[i+1].focus();
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Timer Logic
+            let timeLeft = 59;
+            const timerElement = document.getElementById('timer');
+            
+            const countdown = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerElement.parentElement.innerHTML = '<button class="text-accent-navy font-bold underline decoration-2 underline-offset-2">Reenviar código ahora</button>';
+                } else {
+                    const seconds = timeLeft.toString().padStart(2, '0');
+                    timerElement.textContent = `00:${seconds}`;
+                    timeLeft--;
+                }
+            }, 1000);
+        });
+    </script>
+</body></html>

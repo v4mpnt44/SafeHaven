@@ -1,0 +1,206 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SafeHaven - Registro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#6750a4",
+                        "error": "#ba1a1a",
+                        "background": "#fdf7ff",
+                        "tertiary-container": "#c9a74d",
+                        "surface-bright": "#fdf7ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#e0d2ff",
+                        "surface-dim": "#ded8e0",
+                        "on-background": "#1d1b20",
+                        "tertiary": "#765b00",
+                        "on-secondary-container": "#645a7d",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "surface-tint": "#6750a4",
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-container": "#503d00",
+                        "primary": "#4f378a",
+                        "outline-variant": "#cbc4d2",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e1d4fd",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "surface-variant": "#e6e0e9",
+                        "surface-container-low": "#f8f2fa",
+                        "surface-container-high": "#ece6ee",
+                        "on-tertiary-fixed": "#241a00",
+                        "inverse-primary": "#cfbcff",
+                        "surface-container": "#f2ecf4",
+                        "surface-container-highest": "#e6e0e9",
+                        "secondary": "#63597c",
+                        "surface": "#fdf7ff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "tertiary-fixed": "#ffdf93",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "inverse-surface": "#322f35",
+                        "on-primary-fixed": "#22005d",
+                        "on-surface": "#1d1b20",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "inverse-on-surface": "#f5eff7",
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary-fixed": "#1f1635",
+                        "outline": "#7a7582",
+                        "on-surface-variant": "#494551"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "stack-sm": "4px",
+                        "stack-md": "12px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display-emergency": ["Anton"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-emergency": ["72px", { "lineHeight": "72px", "letterSpacing": "0.05em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(253, 247, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(203, 196, 210, 0.3);
+        }
+        
+        .hero-bg {
+            background-image: radial-gradient(circle at top right, #e9ddff 0%, #fdf7ff 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-body-md text-body-md antialiased hero-bg p-4 md:p-8">
+<main class="w-full max-w-[480px] mx-auto glass-panel rounded-xl shadow-lg overflow-hidden relative">
+<!-- Header Section -->
+<header class="pt-10 pb-6 px-8 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(103,80,164,0.4)] relative">
+<span class="material-symbols-outlined text-on-primary-container text-[32px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div class="absolute inset-0 rounded-full border-2 border-primary-fixed animate-pulse opacity-50"></div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary tracking-tight mb-2">SafeHaven</h1>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-[280px]">Únete a la red de protección comunitaria</p>
+</header>
+<!-- Form Section -->
+<div class="px-8 pb-10">
+<form action="#" class="space-y-stack-md" method="POST">
+<div class="space-y-stack-sm">
+<label class="block font-label-caps text-label-caps text-on-surface" for="fullName">Nombre completo</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border-b-2 border-surface-variant focus:border-primary focus:ring-0 rounded-t-lg transition-colors outline-none text-on-surface font-body-md text-body-md placeholder:text-outline-variant/60" id="fullName" name="fullName" placeholder="Ej. Ana García" required="" type="text">
+</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="block font-label-caps text-label-caps text-on-surface" for="email">Correo electrónico</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border-b-2 border-surface-variant focus:border-primary focus:ring-0 rounded-t-lg transition-colors outline-none text-on-surface font-body-md text-body-md placeholder:text-outline-variant/60" id="email" name="email" placeholder="tu@email.com" required="" type="email">
+</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="block font-label-caps text-label-caps text-on-surface" for="phone">Teléfono celular</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">smartphone</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border-b-2 border-surface-variant focus:border-primary focus:ring-0 rounded-t-lg transition-colors outline-none text-on-surface font-body-md text-body-md placeholder:text-outline-variant/60" id="phone" name="phone" placeholder="+52 000 000 0000" required="" type="tel">
+</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="block font-label-caps text-label-caps text-on-surface" for="password">Contraseña</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-lowest border-b-2 border-surface-variant focus:border-primary focus:ring-0 rounded-t-lg transition-colors outline-none text-on-surface font-body-md text-body-md placeholder:text-outline-variant/60" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button aria-label="Toggle password visibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="space-y-stack-sm">
+<label class="block font-label-caps text-label-caps text-on-surface" for="confirmPassword">Confirmar contraseña</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">lock_clock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-lowest border-b-2 border-surface-variant focus:border-primary focus:ring-0 rounded-t-lg transition-colors outline-none text-on-surface font-body-md text-body-md placeholder:text-outline-variant/60" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required="" type="password">
+</div>
+</div>
+<div class="pt-stack-md">
+<button class="w-full bg-primary hover:bg-on-primary-fixed text-on-primary font-headline-md text-headline-md py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+                        Crear mi cuenta
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-8 text-center">
+<p class="text-on-surface-variant font-body-md text-body-md">
+                    ¿Ya tienes una cuenta? 
+                    <a class="text-primary font-bold hover:text-on-primary-fixed transition-colors underline-offset-4 hover:underline" href="#">
+                        Inicia sesión
+                    </a>
+</p>
+</div>
+</div>
+<!-- Decorative Bottom Edge -->
+<div class="h-2 w-full bg-gradient-to-r from-primary via-primary-container to-secondary-container"></div>
+</main>
+<script>
+        // Simple password toggle interaction
+        const passwordFields = document.querySelectorAll('input[type="password"]');
+        const toggleButtons = document.querySelectorAll('button[aria-label="Toggle password visibility"]');
+        
+        toggleButtons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const input = passwordFields[index];
+                const icon = btn.querySelector('span');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.textContent = 'visibility';
+                } else {
+                    input.type = 'password';
+                    icon.textContent = 'visibility_off';
+                }
+            });
+        });
+    </script>
+</body></html>
