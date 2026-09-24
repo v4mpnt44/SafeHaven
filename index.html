@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>SafeHaven — Tu comunidad te cuida</title>
+    <meta name="description" content="SafeHaven: red de protección comunitaria. Registro, verificación SMS y seguridad vecinal." />
+    <meta name="theme-color" content="#4f378a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SafeHaven" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;600;700&family=Inter:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" async defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4f378a",
+              "primary-container": "#6750a4",
+              "primary-fixed": "#e9ddff",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#e0d2ff",
+              secondary: "#63597c",
+              "secondary-container": "#e1d4fd",
+              background: "#fdf7ff",
+              "on-background": "#1d1b20",
+              surface: "#fdf7ff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f8f2fa",
+              "surface-container": "#f2ecf4",
+              "surface-container-high": "#ece6ee",
+              "on-surface": "#1d1b20",
+              "on-surface-variant": "#494551",
+              outline: "#7a7582",
+              "outline-variant": "#cbc4d2",
+              error: "#ba1a1a",
+              navy: "#014BA0",
+              sky: "#B2FFFF"
+            },
+            fontFamily: {
+              display: ["Anton", "sans-serif"],
+              headline: ["Hanken Grotesk", "sans-serif"],
+              body: ["Inter", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="install-banner" hidden>
+      <span class="material-symbols-outlined">shield</span>
+      <p>Instala SafeHaven para acceso rápido y uso sin conexión.</p>
+      <button id="install-btn" type="button">Instalar</button>
+      <button id="install-dismiss" type="button" aria-label="Cerrar">✕</button>
+    </div>
+    <noscript>Necesitas JavaScript para usar SafeHaven.</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
