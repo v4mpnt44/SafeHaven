@@ -446,14 +446,56 @@ export const pages = {
             <p id="gps-hint" class="text-[11px] text-[#494551] mt-2">Midiendo tu avance con el GPS…</p>
             <button type="button" id="demo-advance" class="text-[11px] font-bold tracking-widest text-[#494551] underline underline-offset-4 mt-1">SIMULAR AVANCE (DEMO)</button>
           </div>
-          <div id="report-box" hidden class="bg-white rounded-2xl border border-[#cbc4d2]/60 p-4 shadow-lg space-y-2">
-            <p class="text-sm font-bold">¿Qué ves en tu ruta?</p>
-            <div class="grid grid-cols-1 gap-2">
-              <button type="button" data-report="Luminaria fundida" class="sh-btn-secondary !py-3 text-sm">Luminaria fundida</button>
-              <button type="button" data-report="Zona en obra" class="sh-btn-secondary !py-3 text-sm">Zona en obra</button>
-              <button type="button" data-report="Persona sospechosa" class="sh-btn-secondary !py-3 text-sm">Persona sospechosa</button>
+          <div id="report-box" hidden class="bg-white rounded-3xl border border-[#cbc4d2]/60 p-5 shadow-xl space-y-4">
+            <div class="flex items-center gap-3">
+              <img src="/images/reportar-avatar.jpg" alt="Guardián de la comunidad" class="w-14 h-14 rounded-full object-cover border-2 border-[#6750a4] shrink-0" loading="lazy" />
+              <div>
+                <p class="font-headline font-bold text-lg text-[#4f378a] leading-tight">Reportar un Peligro</p>
+                <p class="text-xs text-[#494551]">Ayuda a mantener tu comunidad segura</p>
+              </div>
             </div>
-            <p id="report-done" class="text-sm font-bold text-[#2e7d32]" hidden>Reporte enviado (demo). Gracias, guardián.</p>
+            <div id="report-grid" class="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Tipo de peligro">
+              <button type="button" class="sh-pick" data-report="Luminaria fundida" role="radio" aria-checked="false" aria-pressed="false">
+                <span class="hexagon"><span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">lightbulb</span></span>
+                <span class="font-bold text-sm leading-tight">Luminaria Fundida</span>
+                <span class="sh-check"><span class="material-symbols-outlined text-sm font-bold">check</span></span>
+              </button>
+              <button type="button" class="sh-pick" data-report="Zona sospechosa" role="radio" aria-checked="false" aria-pressed="false">
+                <span class="hexagon"><span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">visibility</span></span>
+                <span class="font-bold text-sm leading-tight">Zona Sospechosa</span>
+                <span class="sh-check"><span class="material-symbols-outlined text-sm font-bold">check</span></span>
+              </button>
+              <button type="button" class="sh-pick" data-report="Peligro vial" role="radio" aria-checked="false" aria-pressed="false">
+                <span class="hexagon"><span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">warning</span></span>
+                <span class="font-bold text-sm leading-tight">Peligro Vial</span>
+                <span class="sh-check"><span class="material-symbols-outlined text-sm font-bold">check</span></span>
+              </button>
+              <button type="button" class="sh-pick" data-report="Incidente" role="radio" aria-checked="false" aria-pressed="false">
+                <span class="hexagon"><span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">report_problem</span></span>
+                <span class="font-bold text-sm leading-tight">Incidente</span>
+                <span class="sh-check"><span class="material-symbols-outlined text-sm font-bold">check</span></span>
+              </button>
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-[#cbc4d2]/50">
+              <div class="p-3 flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="material-symbols-outlined text-[#4f378a] shrink-0" style="font-variation-settings:'FILL' 1">location_on</span>
+                  <div class="min-w-0">
+                    <p class="text-[10px] font-bold text-[#7a7582] uppercase tracking-widest">Ubicación actual</p>
+                    <p id="report-loc" class="text-sm font-bold truncate">Tu ubicación GPS</p>
+                  </div>
+                </div>
+                <button id="report-loc-change" type="button" class="px-4 py-2 bg-[#e1d4fd] text-[#4b4263] rounded-full text-xs font-bold shrink-0 active:scale-95">Cambiar</button>
+              </div>
+              <img src="/images/reportar-mapa.jpg" alt="Mapa de la ubicación del reporte" class="h-24 w-full object-cover" loading="lazy" />
+            </div>
+            <div class="flex gap-2">
+              <button id="report-photo" type="button" class="sh-btn-secondary !py-3 text-sm"><span class="material-symbols-outlined text-[#4f378a]">camera_alt</span> <span data-label>Tomar Foto</span></button>
+              <button id="report-voice" type="button" class="sh-btn-secondary !py-3 text-sm"><span class="material-symbols-outlined text-[#4f378a]">mic</span> <span data-label>Nota de Voz</span></button>
+            </div>
+            <p id="report-error" class="text-xs font-bold text-[#ba1a1a]" hidden>Elige el tipo de peligro para enviar el reporte.</p>
+            <button id="report-send" type="button" class="sh-btn-primary">Enviar Reporte <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-bold">+50 Safepoints</span></button>
+            <p id="report-done" class="text-sm font-bold text-[#2e7d32] text-center" hidden>Reporte enviado (demo). Gracias, guardián.</p>
           </div>
           <p id="lleque-done" class="text-sm font-bold text-[#2e7d32] text-center" hidden>¡Buen camino! Trayecto cerrado con éxito.</p>
         </div>

@@ -607,13 +607,55 @@ function wire(name) {
     document.getElementById('report-btn')?.addEventListener('click', () => {
       const box = document.getElementById('report-box');
       box.hidden = !box.hidden;
+      if (!box.hidden) {
+        try { window._shSheet?.snap('expanded'); } catch {}
+        document.getElementById('report-error').hidden = true;
+        document.getElementById('report-done').hidden = true;
+      }
     });
-    document.querySelectorAll('[data-report]').forEach((b) => {
+    // Grilla de peligros (selección única, como el rol en intereses)
+    document.querySelectorAll('#report-grid [data-report]').forEach((b) => {
       b.addEventListener('click', () => {
+        document.querySelectorAll('#report-grid [data-report]').forEach((x) => {
+          const on = x === b;
+          x.setAttribute('aria-pressed', String(on));
+          x.setAttribute('aria-checked', String(on));
+        });
         try { sessionStorage.setItem('sh_reporte', b.dataset.report); } catch {}
-        document.getElementById('report-done').hidden = false;
-        setTimeout(() => { document.getElementById('report-box').hidden = true; }, 1600);
+        try { if (navigator.vibrate) navigator.vibrate(50); } catch {}
+        document.getElementById('report-error').hidden = true;
+        document.getElementById('report-done').hidden = true;
       });
+    });
+    document.getElementById('report-loc-change')?.addEventListener('click', () => {
+      const loc = document.getElementById('report-loc');
+      const next = prompt('Ubicación del reporte:', loc?.textContent || '');
+      if (next && next.trim() && loc) loc.textContent = next.trim();
+    });
+    // Adjuntos demo: foto / nota de voz (marcan estado visual)
+    [['report-photo', 'Foto lista'], ['report-voice', 'Nota lista']].forEach(([id, doneLabel]) => {
+      const btn = document.getElementById(id);
+      btn?.addEventListener('click', () => {
+        const label = btn.querySelector('[data-label]');
+        const on = btn.getAttribute('data-attached') === 'true';
+        btn.setAttribute('data-attached', String(!on));
+        btn.style.borderColor = !on ? '#2e7d32' : '';
+        if (label) label.textContent = !on ? `${doneLabel} ✓` : (id === 'report-photo' ? 'Tomar Foto' : 'Nota de Voz');
+      });
+    });
+    document.getElementById('report-send')?.addEventListener('click', () => {
+      const sel = document.querySelector('#report-grid [data-report][aria-pressed="true"]');
+      const err = document.getElementById('report-error');
+      if (!sel) { err.hidden = false; return; }
+      err.hidden = true;
+      try {
+        sessionStorage.setItem('sh_reporte', sel.dataset.report);
+        sessionStorage.setItem('sh_reporte_loc', document.getElementById('report-loc')?.textContent || '');
+      } catch {}
+      const done = document.getElementById('report-done');
+      done.textContent = `Reporte "${sel.dataset.report}" enviado (demo). +50 Safepoints. ¡Gracias, guardián!`;
+      done.hidden = false;
+      setTimeout(() => { document.getElementById('report-box').hidden = true; }, 2200);
     });
     document.getElementById('lleque-btn')?.addEventListener('click', () => {
       finishTrip(false);
