@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Item Inspection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=Anton&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#645a7d",
+                      "on-primary-container": "#e0d2ff",
+                      "on-background": "#1d1b20",
+                      "primary": "#4f378a",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "outline": "#7a7582",
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#494551",
+                      "on-surface": "#1d1b20",
+                      "error-container": "#ffdad6",
+                      "secondary": "#63597c",
+                      "primary-fixed": "#e9ddff",
+                      "on-tertiary-container": "#503d00",
+                      "on-primary-fixed": "#22005d",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "inverse-surface": "#322f35",
+                      "surface-bright": "#fdf7ff",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#e9ddff",
+                      "inverse-primary": "#cfbcff",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "primary-fixed-dim": "#cfbcff",
+                      "tertiary-container": "#c9a74d",
+                      "tertiary-fixed": "#ffdf93",
+                      "secondary-container": "#e1d4fd",
+                      "surface-dim": "#ded8e0",
+                      "on-secondary-fixed": "#1f1635",
+                      "tertiary": "#765b00",
+                      "inverse-on-surface": "#f5eff7",
+                      "surface-container-high": "#ece6ee",
+                      "outline-variant": "#cbc4d2",
+                      "surface-container-low": "#f8f2fa",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#f2ecf4",
+                      "surface-container-highest": "#e6e0e9",
+                      "surface-tint": "#6750a4",
+                      "surface": "#fdf7ff",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "surface-variant": "#e6e0e9",
+                      "on-tertiary-fixed": "#241a00",
+                      "background": "#fdf7ff",
+                      "on-error": "#ffffff",
+                      "primary-container": "#6750a4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "4px",
+                      "container-margin": "24px",
+                      "stack-md": "12px",
+                      "gutter": "16px",
+                      "unit": "8px",
+                      "stack-lg": "24px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-emergency": [
+                              "Anton"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-emergency": [
+                              "72px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .hex-clip {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        .epic-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .epic-bg {
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim docked full-width top-0 bg-surface-container dark:bg-surface-container shadow-sm flex justify-between items-center w-full px-container-margin h-16 z-50 fixed">
+<button aria-label="Back" class="p-2 -ml-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform text-on-surface-variant dark:text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="flex-1 text-center truncate">Item Inspection</h1>
+<button aria-label="More options" class="p-2 -mr-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform text-on-surface-variant dark:text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content Area (Modal/Bottom Sheet style) -->
+<main class="flex-1 mt-16 pb-[90px] overflow-y-auto bg-surface-container-low flex flex-col relative">
+<!-- Hero Image Section with Glassmorphism overlay -->
+<div class="relative w-full h-[45vh] bg-surface-container-lowest flex items-center justify-center p-8 overflow-hidden rounded-b-[2rem] shadow-sm z-10">
+<!-- Subtle background glow -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent"></div>
+<img alt="Visor Táctico Lumen" class="w-full h-full object-contain relative z-10 drop-shadow-xl" data-alt="A highly detailed 3D render of a futuristic tactical visor on a sleek platform, emitting a soft, glowing cyan light. The visor features intricate carbon fiber textures, white armor plating, and luminous circuit patterns. The scene is bright and clean, set against a pristine white studio background, conveying a high-tech, premium aesthetic suitable for a modern sci-fi interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI7AjkAgQ213F4eddy8-d9_qSaqPUEQy0vAp8baA8zj_DB0B5z4r0dSZ2Gqc3tcOF-Ub6_CIYDAzWz6IbvfRHMVi-yQO0WWRlbi052Z2VLChXDz9_3FU9QMUWnQZCpbYXVpxoiljvUNaSk8x7rgJZzkMEnr_HFkmvd3KO2TQt01j_9aCTjpqT-oXA97Q7_yWESNuhI0-ZWi8l9O7NYv8-sJu-JpT2EdUl4rNbcy-CsAN8aeG9mSE1y"/>
+<!-- Rarity Badge Floating -->
+<div class="absolute top-6 right-6 epic-bg text-white font-label-caps text-label-caps px-4 py-2 rounded-full shadow-lg border border-white/20 backdrop-blur-md z-20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                EPIC
+            </div>
+</div>
+<!-- Details Section -->
+<div class="flex-1 px-container-margin pt-8 pb-stack-lg flex flex-col gap-stack-lg z-20 -mt-6">
+<!-- Title & Lore -->
+<div class="glass-panel rounded-2xl p-6 shadow-sm">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Visor Táctico Lumen</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                    Desarrollado en los laboratorios del Sector Norte, este visor utiliza tecnología de escaneo térmico para detectar anomalías en zonas de baja visibilidad. Un aliado indispensable para patrullas nocturnas.
+                </p>
+</div>
+<!-- Stats (Hexagonal/Tactical Theme) -->
+<div class="glass-panel rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+<h3 class="font-headline-md text-headline-md text-sm text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+                    Technical Stats
+                </h3>
+<!-- Stat Item -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container text-on-primary-container hex-clip flex items-center justify-center font-bold shadow-inner">
+                        +15
+                    </div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-semibold text-on-surface text-sm">Detección</span>
+<span class="text-primary text-xs font-bold">Lvl. 3</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+<!-- Stat Item -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container hex-clip flex items-center justify-center font-bold shadow-inner">
+                        +20
+                    </div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-semibold text-on-surface text-sm">Claridad</span>
+<span class="text-secondary text-xs font-bold">Lvl. 4</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Stat Item -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container hex-clip flex items-center justify-center font-bold shadow-inner">
+                        +10
+                    </div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="font-semibold text-on-surface text-sm">Prestigio</span>
+<span class="text-tertiary text-xs font-bold">Lvl. 2</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-tertiary h-2 rounded-full" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Action Area -->
+<div class="fixed bottom-0 left-0 w-full p-container-margin bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 z-30">
+<button class="w-full bg-primary text-on-primary font-headline-md text-headline-md text-lg py-4 rounded-xl shadow-md hover:bg-primary/90 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">shopping_cart</span>
+                Equipar Ahora
+            </button>
+</div>
+</main>
+<!-- BottomNavBar Suppressed due to Sub-page/Transactional intent -->
+</body></html>
