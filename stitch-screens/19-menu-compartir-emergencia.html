@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeHaven Share Sheet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#4f378a",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#e1d4fd",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#ffdf93",
+                      "on-secondary-container": "#645a7d",
+                      "primary-fixed": "#e9ddff",
+                      "secondary-fixed": "#e9ddff",
+                      "on-primary-fixed": "#22005d",
+                      "on-surface": "#1d1b20",
+                      "tertiary-container": "#c9a74d",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "inverse-primary": "#cfbcff",
+                      "outline-variant": "#cbc4d2",
+                      "primary": "#4f378a",
+                      "surface-tint": "#6750a4",
+                      "on-background": "#1d1b20",
+                      "on-surface-variant": "#494551",
+                      "background": "#fdf7ff",
+                      "surface-dim": "#ded8e0",
+                      "on-tertiary-container": "#503d00",
+                      "on-secondary-fixed": "#1f1635",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#e0d2ff",
+                      "surface-container": "#f2ecf4",
+                      "surface-variant": "#e6e0e9",
+                      "outline": "#7a7582",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#cfbcff",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#322f35",
+                      "surface": "#fdf7ff",
+                      "surface-container-high": "#ece6ee",
+                      "surface-bright": "#fdf7ff",
+                      "inverse-on-surface": "#f5eff7",
+                      "surface-container-highest": "#e6e0e9",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "primary-container": "#6750a4",
+                      "on-tertiary-fixed": "#241a00",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f8f2fa",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#765b00",
+                      "secondary": "#63597c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-margin": "24px",
+                      "stack-lg": "24px",
+                      "gutter": "16px",
+                      "stack-sm": "4px",
+                      "stack-md": "12px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "display-emergency": [
+                              "Anton"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-emergency": [
+                              "72px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .sheet-enter {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+      </style>
+</head>
+<body class="bg-gray-900 h-screen w-full flex items-end justify-center overflow-hidden font-body-md text-body-md text-on-surface">
+<!-- Mock Map Background -->
+<div class="absolute inset-0 z-0 opacity-50" data-alt="A detailed map view showing an urban neighborhood at night, styled in isometric 3D with glowing waypoints and subtle tactical overlays in a modern blue-tinted color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGGENaosYDNeXV_0cXm2vPeRj7stQTpoqpiBKo8wMXLsE4oLxnPRTsQcJwe-2scyky4GqiQd9kFHXKJ2jQ7_xSg-j-u8OdPOdUgSu1IQiF5Owm_OuQyYX394yp4a354V3EYbu2z6D9JgGSe4ZTVkscpAXcnkzaPSmkXvpQSVYLkk9P-Ef8IfPkFalE58Hm8ziF_3DYa0tviQ6AIR4BJ_VjyFagwiD_LmkxVSDDl1i1bPWSotADVno7'); background-size: cover; background-position: center;"></div>
+<div class="absolute inset-0 bg-black/40 z-10 backdrop-blur-sm"></div>
+<!-- Bottom Sheet -->
+<div class="w-full max-w-md bg-surface rounded-t-3xl shadow-2xl z-20 sheet-enter flex flex-col relative pb-8 md:mb-4 md:rounded-3xl border border-outline-variant/30">
+<!-- Handle -->
+<div class="w-full flex justify-center pt-4 pb-2 cursor-pointer touch-none">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full opacity-60"></div>
+</div>
+<div class="px-container-margin pt-2 pb-6">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6 text-center">Compartir Ubicación</h2>
+<!-- Suggested Contacts -->
+<div class="mb-stack-lg">
+<div class="flex overflow-x-auto hide-scrollbar gap-gutter pb-2 snap-x">
+<!-- Contact 1 -->
+<div class="flex flex-col items-center gap-2 snap-start shrink-0">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container p-0.5">
+<img alt="Mamá" class="w-full h-full object-cover rounded-full bg-surface-variant" data-alt="Friendly 3D Pixar style female avatar, young woman smiling confidently, wearing a subtle glowing safety vest, bright sky-blue background." src="https://lh3.googleusercontent.com/aida/AP1WRLvhKorLsJvyEa4yQmNT3y-m5Pe6eqjTGoNOpd8JXxJCAsM5yO4CYfaRU-d7WgtWjg9UMl51ZuEpMUP7tfMTJtawRZ9aRMLWgLjwJb8iDugkcpD9HbLZ2p2oNYa1Isc8k4KadhMmfMreVL3WMAqh88wkPFG9rNj4MEdLcCNl8RmVrCMd4E9Ky7zok2q0xIogFAdks8QPtlQWPM3OVxoRcCE6ASqa9nFrTrs33J0X9GClkYBn56v2UCFNJI4"/>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm font-medium">Mamá</span>
+</div>
+<!-- Contact 2 -->
+<div class="flex flex-col items-center gap-2 snap-start shrink-0">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant p-0.5">
+<img alt="Papá" class="w-full h-full object-cover rounded-full bg-surface-variant" data-alt="Friendly 3D Pixar style male avatar, young man smiling warmly, casual clothes with subtle glowing safety vest, bright sky-blue background." src="https://lh3.googleusercontent.com/aida/AP1WRLvrKwxd2BG3yBdGIudUlft1IYixPi__xNSiy1PBbZymTM5ZulObT2-JNFGoaYf_X4HwC_w6Jp8hbmmj6X7eeh00Iy5GGtkq2H68lX-aTjIM__3Mt4U623q792Yx3alEyt-kKQUyZzFpOGtON7kseQ-v6RI5okHYE2ZtDNF2zSvIoe89zKE3qXAJfo-VTL3Bpb_h7gmbhk7Ks1nDKELx5u7T5XvGeYhD2JxabvVaifNOpKxzqHlg2uzyofc"/>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm font-medium">Papá</span>
+</div>
+<!-- Contact 3 -->
+<div class="flex flex-col items-center gap-2 snap-start shrink-0">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant p-0.5 flex items-center justify-center bg-surface-container-high">
+<span class="material-symbols-outlined text-outline text-3xl">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm font-medium">Ana</span>
+</div>
+<!-- Contact 4 -->
+<div class="flex flex-col items-center gap-2 snap-start shrink-0">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-variant p-0.5 flex items-center justify-center bg-surface-container-high">
+<span class="material-symbols-outlined text-outline text-3xl">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm font-medium">Carlos</span>
+</div>
+</div>
+</div>
+<!-- Action Row -->
+<div class="grid grid-cols-3 gap-unit mb-stack-lg">
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container transition-colors active:scale-95">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-2 text-on-secondary-container">
+<span class="material-symbols-outlined">link</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant text-center">COPIAR ENLACE</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container transition-colors active:scale-95">
+<div class="w-12 h-12 rounded-full bg-[#25D366]/20 flex items-center justify-center mb-2 text-[#075E54]">
+<span class="material-symbols-outlined">chat</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant text-center">WHATSAPP</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-low rounded-2xl hover:bg-surface-container transition-colors active:scale-95">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/30 flex items-center justify-center mb-2 text-on-tertiary-container">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant text-center">CÍRCULOS</span>
+</button>
+</div>
+<!-- Emergency Share Action -->
+<div class="mt-4">
+<button class="w-full bg-error hover:bg-error/90 text-on-error rounded-xl p-4 flex items-center justify-center gap-3 shadow-[0_8px_0_0_#93000a] active:shadow-[0_0px_0_0_#93000a] active:translate-y-2 transition-all duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-headline-md text-headline-md tracking-wider">COMPARTIR EMERGENCIA</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>
