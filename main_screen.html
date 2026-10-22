@@ -211,9 +211,10 @@
 </button>
 </div>
 </nav>
+
 <!-- Profile Screen (initially hidden) -->
-<div id="perfil-screen" class="fixed inset-0 z-40 hidden flex flex-col items-center justify-center bg-surface/80 backdrop-blur-md pointer-events-none transition-opacity duration-300">
-<div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl transform scale-95 opacity-0 transition-all duration-300" style="pointer-events-auto">
+<div id="perfil-screen" class="fixed inset-0 z-40 transition-opacity duration-300">
+<div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl transform scale-95 transition-all duration-300" style="opacity: 1; pointer-events-auto">
 <!-- Avatar Card -->
 <div class="relative w-48 h-48 mb-6 rounded-2xl bg-[#B2FFFF] shadow-lg overflow-hidden flex items-end justify-center border-4 border-surface">
 <img alt="Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvs-2SHpj7Y4acSVtUCx2uycXQ9kCoMOP-G-ZEIqI_-n1HlUDC0ws8eikcKgjbITJjngmTbM4BN6VK3w6Pvvs1ZH6S8Q_oqAuvRfo9Z6ylgGHIBZbKo6cdGYTfdNj3GF7I00V-j-3f6UWzThuShL5xgWEHqa8vxPmc_kX7KreXiK5xcCSpReX_jdRkPQI84TYU_za5wn31qkmnj_MDTb3lX--vs_vTduUq-KON1wq5Jba6l9MUVxxqA9tw"/>
@@ -278,8 +279,8 @@
 <span class="material-symbols-outlined">edit_document</span>
 </div>
 <span class="font-medium text-on-surface">Editar Información Personal</span>
-<span class="material-symbols-outlined text-outline">chevron_right</span>
 </div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
 <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
 <div class="flex items-center gap-4">
@@ -287,8 +288,8 @@
 <span class="material-symbols-outlined">checkroom</span>
 </div>
 <span class="font-medium text-on-surface">Personalizar Personaje y Tienda</span>
-<span class="material-symbols-outlined text-outline">chevron_right</span>
 </div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
 <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
 <div class="flex items-center gap-4">
@@ -296,8 +297,8 @@
 <span class="material-symbols-outlined">group</span>
 </div>
 <span class="font-medium text-on-surface">Mis Círculos de Confianza</span>
-<span class="material-symbols-outlined text-outline">chevron_right</span>
 </div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
 <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
 <div class="flex items-center gap-4">
@@ -305,8 +306,8 @@
 <span class="material-symbols-outlined">history</span>
 </div>
 <span class="font-medium text-on-surface">Historial de Reportes y Puntos</span>
-<span class="material-symbols-outlined text-outline">chevron_right</span>
 </div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
 </button>
 </section>
 <!-- Back Button -->
@@ -348,20 +349,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMap = document.getElementById('nav-map');
     const navFlock = document.getElementById('nav-flock');
     const navPerfil = document.getElementById('nav-perfil');
-    const backBtn = document.getElementById('back-btn');
     const profilScreen = document.getElementById('perfil-screen');
+    const backBtn = document.getElementById('back-btn');
 
-    // Navigate to perfil screen (hidden div)
+    // Show perfil screen
     function showPerfilScreen() {
-        profilScreen.classList.remove('hidden');
-        profilScreen.classList.add('flex');
+        profilScreen.style.display = 'block';
+        profilScreen.style.opacity = '1';
+        profilScreen.style.pointerEvents = 'auto';
         currentScreen = 'perfil';
     }
 
-    // Navigate back to home
+    // Hide perfil screen
     function hidePerfilScreen() {
-        profilScreen.classList.add('hidden');
-        profilScreen.classList.remove('flex');
+        profilScreen.style.opacity = '0';
+        profilScreen.style.pointerEvents = 'none';
+        setTimeout(() => {
+            profilScreen.style.display = 'none';
+        }, 300);
         currentScreen = 'home';
     }
 
@@ -377,10 +382,10 @@ document.addEventListener('DOMContentLoaded', () => {
         hidePerfilScreen();
     });
 
-    // Initial screen
-    // Hide perfil screen initially since it's already in the HTML with 'hidden' class
-    profilScreen.classList.add('hidden');
-    profilScreen.classList.remove('flex');
+    // Initial screen - hide perfil screen
+    profilScreen.style.display = 'none';
+    profilScreen.style.opacity = '0';
+    profilScreen.style.pointerEvents = 'none';
 });
 </script>
 </body></html>
