@@ -345,44 +345,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navigation state
     let currentScreen = 'home';
-    const profilScreen = document.getElementById('perfil-screen');
     const navMap = document.getElementById('nav-map');
     const navFlock = document.getElementById('nav-flock');
     const navPerfil = document.getElementById('nav-perfil');
     const backBtn = document.getElementById('back-btn');
+    const profilScreen = document.getElementById('perfil-screen');
 
-    // Show/hide screens
-    function showScreen(screen) {
-        // Hide all screens
-        document.querySelectorAll('[id$="-screen"]').forEach(el => {
-            el.classList.add('hidden');
-            el.classList.remove('flex');
-        });
-        // Show selected screen
-        if (screen === 'perfil') {
-            profilScreen.classList.remove('hidden');
-            profilScreen.classList.add('flex');
-        }
-        currentScreen = screen;
+    // Navigate to perfil screen (hidden div)
+    function showPerfilScreen() {
+        profilScreen.classList.remove('hidden');
+        profilScreen.classList.add('flex');
+        currentScreen = 'perfil';
+    }
+
+    // Navigate back to home
+    function hidePerfilScreen() {
+        profilScreen.classList.add('hidden');
+        profilScreen.classList.remove('flex');
+        currentScreen = 'home';
     }
 
     // Navigate to perfil
     navPerfil.addEventListener('click', (e) => {
         e.preventDefault();
-        // Also update hash for main app navigation
-        location.hash = '#/perfil';
-        showScreen('perfil');
+        showPerfilScreen();
     });
 
     // Navigate back
     backBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        location.hash = '#/inicio';
-        showScreen('home');
+        hidePerfilScreen();
     });
 
     // Initial screen
-    showScreen('home');
+    // Hide perfil screen initially since it's already in the HTML with 'hidden' class
+    profilScreen.classList.add('hidden');
+    profilScreen.classList.remove('flex');
 });
 </script>
 </body></html>
