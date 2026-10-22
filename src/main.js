@@ -26,6 +26,7 @@ const routes = {
   mapa: { render: pages.mapa, title: 'Mapa Seguro — SafeHaven' },
   'puntos-ambar': { render: pages.puntosAmbar, title: 'Puntos Ámbar — SafeHaven' },
   'punto-detalle': { render: pages.puntoDetalle, title: 'Detalle del Punto Seguro — SafeHaven' },
+  perfil: { render: pages.perfil, title: 'Perfil de Usuario — SafeHaven' },
 };
 
 const APP_NAV_ROUTES = new Set(['inicio', 'trayecto', 'mapa', 'flock', 'armario', 'puntos-ambar', 'punto-detalle']);
@@ -81,19 +82,33 @@ function esEmailValido(email) {
   return re.test(email) && email.length >= 6 && email.length <= 254;
 }
 
-// Validación de número de teléfono (Chile-first: +56 9 XXXXXXXX, +56 2 XXXXXXXX o local 9 XXXXXXXX)
-// También acepta números internacionales de 7-15 dígitos sin prefijoChile
-function esTelefonoValido(phone) {
+// Validación de número de teléfono con selector de país
+// Por defecto valida números chilenos (+56 9 XXXXXXXX, +56 2 XXXXXXXX o local 9 XXXXXXXX)
+// Puede recibir un código de país opcional para validar otros formatos
+function esTelefonoValido(phone, countryCode = 'CL') {
   const cleaned = phone.replace(/\s+/g, '');
-  // Chile móvil: +56 9 6XXXXXXXX a +56 9 9XXXXXXXX (6-9 como dígito inicial de operadora)
-  const chileMobile = /^(?:\+56\s?)?9[6-9]\d{7}$/;
-  // Chile fijo: +56 2 XXXXXXXX
-  const chileFixed = /^(?:\+56\s?)?2\d{8}$/;
-  // Local sin código de país: 9 XXXXXXXX
-  const local = /^9\d{7}$/;
-  // Internacional: 7 a 15 dígitos puros
-  const international = /^\d{7,15}$/;
-  return chileMobile.test(cleaned) || chileFixed.test(cleaned) || local.test(cleaned) || international.test(cleaned);
+  const country = countryCode.toUpperCase();
+
+  // Formatos chilenos (código país CL)
+  if (country === 'CL') {
+    // Chile móvil: +56 9 6XXXXXXXX a +56 9 9XXXXXXXX
+    const chileMobile = /^(?:\+56\s?)?9[6-9]\d{7}$/;
+    // Chile fijo: +56 2 XXXXXXXX
+    const chileFixed = /^(?:\+56\s?)?2\d{8}$/;
+    // Local sin código de país: 9 XXXXXXXX
+    const local = /^9\d{7}$/;
+    return chileMobile.test(cleaned) || chileFixed.test(cleaned) || local.test(cleaned);
+  }
+
+  // Formato internacional: 7 a 15 dígitos puros (sin prefijo +)
+  if (country === 'INTL' || country === 'GLOBAL') {
+    const international = /^\d{7,15}$/;
+    return international.test(cleaned);
+  }
+
+  // Si no hay país reconocido, aceptamos cualquier formato de 7-15 dígitos
+  const generic = /^\d{7,15}$/;
+  return generic.test(cleaned);
 }
 
 // Puntos ámbar de ejemplo alrededor del centro (se generan al ubicarte) — Chile
@@ -348,7 +363,7 @@ function wire(name) {
   if (name === 'registro') {
     document.querySelectorAll('[data-toggle-pass]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const input = document.getElementById(btn.dataset.togglePass);
+        const input = document.getElementById(btn.dataTogglePass);
         const icon = btn.querySelector('span');
         const show = input.type === 'password';
         input.type = show ? 'text' : 'password';
@@ -363,6 +378,7 @@ function wire(name) {
       const confirm = document.getElementById('confirmPassword').value;
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
+      const countryCode = document.getElementById('country-code')?.value || 'CL';
       if (pass !== confirm) {
         err.textContent = 'Las contraseñas no coinciden.';
         err.hidden = false;
@@ -373,8 +389,8 @@ function wire(name) {
         err.hidden = false;
         return;
       }
-      if (!esTelefonoValido(phone)) {
-        err.textContent = 'Teléfono inválido. Formato: +56 9 XXXXXXXX (Chile) o número internacional de 7-15 dígitos.';
+      if (!esTelefonoValido(phone, countryCode)) {
+        err.textContent = 'Teléfono inválido. Formato: +56 9 XXXXXXXX (Chile) u otro formato internacional válido.';
         err.hidden = false;
         return;
       }
@@ -921,6 +937,16 @@ function wire(name) {
         document.getElementById('zona-error').hidden = true;
         document.getElementById('zona-done').hidden = true;
         document.getElementById('zona-back').hidden = true;
+        // Mostrar u ocultar input "Otro riesgo"
+        const otroBox = document.getElementById('zona-otro');
+        const show = b.dataset.zona === 'Otro riesgo';
+        if (otroBox) {
+          otroBox.hidden = !show;
+          otroBox.style.display = show ? '' : 'none';
+          if (show && document.getElementById('zona-otro-input')) {
+            document.getElementById('zona-otro-input').focus();
+          }
+        }
       });
     });
     document.getElementById('zona-voice')?.addEventListener('click', (e) => {
@@ -937,9 +963,17 @@ function wire(name) {
       const err = document.getElementById('zona-error');
       if (!sel) { err.hidden = false; return; }
       err.hidden = true;
+      let detalle = sel.dataset.zona;
+      // Si es "Otro riesgo", exige escribir o seleccionar uno
+      if (detalle === 'Otro riesgo') {
+        const custom = document.getElementById('zona-otro-input')?.value.trim() || '';
+        const otroErr = document.getElementById('zona-otro-error');
+        if (!custom) { otroErr.hidden = false; return; }
+        detalle = custom;
+      }
       try {
         sessionStorage.setItem('sh_reporte', 'Zona sospechosa');
-        sessionStorage.setItem('sh_reporte_detalle', sel.dataset.zona);
+        sessionStorage.setItem('sh_reporte_detalle', detalle);
         sessionStorage.setItem('sh_reporte_loc', document.getElementById('zona-addr')?.textContent || '');
       } catch {}
       document.getElementById('zona-done').hidden = false;
