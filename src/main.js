@@ -29,7 +29,7 @@ const routes = {
   perfil: { render: pages.perfil, title: 'Perfil de Usuario — SafeHaven' },
 };
 
-const APP_NAV_ROUTES = new Set(['inicio', 'trayecto', 'mapa', 'flock', 'armario', 'puntos-ambar', 'punto-detalle']);
+const APP_NAV_ROUTES = new Set(['inicio', 'trayecto', 'mapa', 'flock', 'armario', 'puntos-ambar', 'punto-detalle', 'perfil']);
 
 // Armario: equipo por slots (cabeza / mascotas / armadura), persistido en sesión
 function gridNameToSlot(gridName) {
