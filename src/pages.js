@@ -423,6 +423,20 @@ export const pages = {
           </div>
           <button type="button" data-dest-demo class="text-xs font-bold tracking-widest text-[#494551] underline underline-offset-4">USAR DESTINO DEMO</button>
           </div>
+          <div class="flex gap-3 mb-4">
+            <a href="#/reportar-peligro-vial" class="flex-1 sh-btn-secondary glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors" aria-label="Reportar Peligro Vial">
+              <span class="material-symbols-outlined text-2xl">construction</span>
+              <span class="font-bold text-xs">Peligro Vial</span>
+            </a>
+            <a href="#/reportar-incidente" class="flex-1 sh-btn-secondary glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors" aria-label="Reportar Incidente">
+              <span class="material-symbols-outlined text-2xl">warning</span>
+              <span class="font-bold text-xs">Incidente</span>
+            </a>
+            <a href="#/perfil" class="flex-1 sh-btn-secondary glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors" aria-label="Perfil">
+              <span class="material-symbols-outlined text-2xl">person</span>
+              <span class="font-bold text-xs">Perfil</span>
+            </a>
+          </div>
           <div id="bloque-llegada" hidden class="flex flex-col gap-3">
             <div class="rounded-2xl bg-[#e9ddff] border border-[#4f378a]/30 p-4">
               <p class="text-xs font-bold tracking-widest text-[#4f378a]">ACOMPAÑAMIENTO EN CURSO</p>
@@ -1790,6 +1804,8 @@ export const bottomNav = (active) => `
   <a href="#/registro" ${active==="registro"?'aria-current="page"':""}><span class="material-symbols-outlined">person_add</span>Registro</a>
   <a href="#/login" ${active==="login"?'aria-current="page"':""}><span class="material-symbols-outlined">login</span>Entrar</a>
   <a href="#/verificar" ${active==="verificar"?'aria-current="page"':""}><span class="material-symbols-outlined">sms</span>Verificar</a>
+  <a href="#/peligro-vial" ${active==="peligro-vial"?'aria-current="page"':""}><span class="material-symbols-outlined">construction</span>Peligro Vial</a>
+  <a href="#/incidente-activo" ${active==="incidente-activo"?'aria-current="page"':""}><span class="material-symbols-outlined">error</span>Incidente Activo</a>
 </nav>`;
 
 export const appNav = (active) => `
@@ -1799,6 +1815,82 @@ export const appNav = (active) => `
   <a href="#/armario" ${active==="armario"?'aria-current="page"':""}><span class="material-symbols-outlined">styler</span>Armario</a>
   <a href="#/perfil" ${active==="perfil"?'aria-current="page"':""}><span class="material-symbols-outlined">person</span>Perfil</a>
 </nav>`;
+
+peligroVial: () => `
+<div class="sh-page sh-auth">
+  <main class="sh-shell flex-1 flex flex-col items-center justify-center px-6 py-8 w-full">
+    <div class="text-center mb-5">
+      <div class="flex justify-center mb-3">
+        <div class="w-20 h-20 bg-[#4f378a] flex items-center justify-center hex-frame brutalist-shadow">
+          <span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings:'FILL' 1">construction</span>
+        </div>
+      </div>
+      <h1 class="font-display text-5xl text-[#4f378a] tracking-tight uppercase leading-none">Reportar Peligro Vial</h1>
+      <p class="font-headline italic text-[#494551] mt-1">Ayuda a mantener las calles seguras</p>
+    </div>
+    <div class="w-full sh-card p-5 space-y-4">
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <button class="sh-btn-primary w-full rounded-xl py-3 px-4 flex items-center justify-center gap-2" onclick="selectChip(this)">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">gite</span>
+          Bache Profundo
+        </button>
+        <button class="sh-btn-secondary w-full rounded-xl py-3 px-4 flex items-center justify-center gap-2" onclick="selectChip(this)">
+          <span class="material-symbols-outlined">broken_image</span>
+          Acera Rota
+        </button>
+        <button class="sh-btn-secondary w-full rounded-xl py-3 px-4 flex items-center justify-center gap-2" onclick="selectChip(this)">
+          <span class="material-symbols-outlined">traffic</span>
+          Semáforo Apagado
+        </button>
+      </div>
+      <textarea class="sh-input w-full rounded-xl py-3 px-4 resize-none h-24" placeholder="Ej: Carril derecho bloqueado..."></textarea>
+      <div class="flex justify-end space-x-2">
+        <button class="sh-btn-primary">Notificar a la Comunidad</button>
+        <button class="sh-btn-secondary" onclick="window.history.back()">Volver</button>
+      </div>
+    </div>
+  </main>
+</div>`,
+
+incidenteActivo: () => `
+<div class="sh-page sh-auth">
+  <main class="sh-shell flex-1 flex flex-col items-center justify-center px-6 py-8 w-full">
+    <div class="bg-error border-l-8 border-error p-4 rounded-b-xl mb-4 shadow-[8px_8px_0px_rgba(186,26,26,1)]">
+      <div class="flex items-center gap-2 text-error">
+        <span class="material-symbols-outlined text-3xl font-bold" style="font-variation-settings: 'FILL' 1">warning</span>
+        <h2 class="font-headline text-error uppercase tracking-wider">Aviso Urgente</h2>
+      </div>
+      <p class="text-on-error text-sm">El uso de este botón enviará una alerta inmediata a la central de seguridad y a tus contactos de emergencia registrados. Úsalo solo en situaciones de riesgo real.</p>
+    </div>
+    <div class="sh-card p-5 space-y-4">
+      <div class="mb-4">
+        <label class="sh-label">Tipo de Emergencia</label>
+        <select class="sh-input w-full rounded-xl py-2 px-4">
+          <option value="">Seleccione una opción...</option>
+          <option value="robo">Robo / Asalto</option>
+          <option value="accidente">Accidente Médico / Tránsito</option>
+          <option value="acoso">Acoso / Peligro Inminente</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="sh-label">Ubicación Actual</label>
+        <div class="bg-surface border rounded-xl p-3 flex items-center gap-3">
+          <span class="material-symbols-outlined text-error text-2xl">my_location</span>
+          <div>
+            <p class="font-bold">Detectando ubicación precisa...</p>
+            <p class="text-[#494551] text-sm">Lat: -34.6037, Lng: -58.3816 (Aprox)</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2">
+        <button class="sh-btn-primary w-full py-3 px-4 rounded-xl shadow-md" onclick="sendEmergencyAlert()">
+          Alertar a Central
+        </button>
+        <button class="sh-btn-secondary" onclick="window.history.back()">Volver</button>
+      </div>
+    </div>
+  </main>
+</div>`,
 
 function navigate(path) {
   window.location.hash = path;

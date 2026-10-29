@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Reportar Incidente - SafeHaven</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;600;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#6750a4",
+                        "surface-container": "#f2ecf4",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#7a7582",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#cfbcff",
+                        "primary": "#4f378a",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "outline-variant": "#cbc4d2",
+                        "on-primary-container": "#e0d2ff",
+                        "on-primary-fixed": "#22005d",
+                        "secondary": "#63597c",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#ece6ee",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "tertiary": "#765b00",
+                        "on-surface": "#1d1b20",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdf93",
+                        "inverse-surface": "#322f35",
+                        "surface-dim": "#ded8e0",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fdf7ff",
+                        "on-secondary-container": "#645a7d",
+                        "surface-container-low": "#f8f2fa",
+                        "primary-fixed": "#e9ddff",
+                        "surface": "#fdf7ff",
+                        "secondary-fixed": "#e9ddff",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e6e0e9",
+                        "on-background": "#1d1b20",
+                        "secondary-container": "#e1d4fd",
+                        "on-surface-variant": "#494551",
+                        "surface-variant": "#e6e0e9",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "on-tertiary-container": "#503d00",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "surface-bright": "#fdf7ff",
+                        "on-secondary-fixed": "#1f1635",
+                        "inverse-on-surface": "#f5eff7",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#241a00",
+                        "inverse-primary": "#cfbcff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#c9a74d",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "primary-container": "#6750a4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-lg": "24px",
+                        "stack-sm": "4px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "stack-md": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-emergency": ["Anton"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-emergency": ["72px", { "lineHeight": "72px", "letterSpacing": "0.05em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-error text-on-error border-b-4 border-on-error flex items-center justify-between px-gutter h-16 w-full shadow-lg">
+<button class="material-symbols-outlined text-3xl font-bold active:scale-95 duration-150" onclick="goBack()" style="color: #ffffff;">arrow_back</button>
+<h1 class="font-headline-md text-headline-md-mobile flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; color: #ffffff;">emergency</span>
+    Reportar Incidente
+</h1>
+<button class="material-symbols-outlined text-3xl font-bold active:scale-95 duration-150">phone_in_talk</button>
+</header>
+<main class="flex-grow px-gutter py-stack-lg flex flex-col gap-stack-lg max-w-2xl mx-auto w-full pb-32">
+<!-- Emergency Warning Banner -->
+<div class="bg-error-container border-l-8 border-error p-gutter rounded-r-lg shadow-[8px_8px_0px_rgba(186,26,26,1)] flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h2 class="font-headline-md text-headline-md-mobile text-error uppercase tracking-wider">Aviso Urgente</h2>
+</div>
+<p class="font-body-md text-on-surface-variant font-bold">
+    El uso de este botón enviará una alerta inmediata a la central de seguridad y a tus contactos de emergencia registrados. Úsalo solo en situaciones de riesgo real.
+</p>
+</div>
+<!-- Incident Type Selection -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-headline-md text-headline-md-mobile text-primary uppercase" for="incident-type">Tipo de Emergencia</label>
+<div class="relative shadow-[4px_4px_0px_rgba(79,55,138,1)]">
+<select class="w-full bg-surface-container-highest border-4 border-primary text-on-surface font-headline-md text-headline-md-mobile p-4 rounded-none appearance-none focus:outline-none focus:ring-0 focus:border-error" id="incident-type">
+<option disabled="" selected="" value="">Seleccione una opción...</option>
+<option value="robo">Robo / Asalto</option>
+<option value="accidente">Accidente Médico / Tránsito</option>
+<option value="acoso">Acoso / Peligro Inminente</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-primary">
+<span class="material-symbols-outlined text-3xl">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Location Confirmation -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-headline-md text-headline-md-mobile text-primary uppercase">Ubicación Actual</label>
+<div class="bg-surface border-4 border-primary p-4 shadow-[4px_4px_0px_rgba(79,55,138,1)] flex items-center gap-4">
+<span class="material-symbols-outlined text-error text-4xl" style="font-variation-settings: 'FILL' 1;">my_location</span>
+<div class="flex-grow">
+<p class="font-bold text-on-surface">Detectando ubicación precisa...</p>
+<p class="text-on-surface-variant text-sm">Lat: -34.6037, Lng: -58.3816 (Aprox)</p>
+</div>
+</div>
+</div>
+<!-- Brutalist SOS Button -->
+<div class="mt-stack-lg">
+<button class="w-full bg-error text-on-error border-8 border-error-container rounded-3xl p-8 flex flex-col items-center justify-center gap-4 shadow-[12px_12px_0px_rgba(147,0,10,1)] active:shadow-none active:translate-y-3 active:translate-x-3 transition-all duration-100" onclick="sendEmergencyAlert()">
+<span class="material-symbols-outlined text-7xl animate-pulse" style="font-variation-settings: 'FILL' 1;">sos</span>
+<span class="font-display-emergency text-display-emergency uppercase text-center leading-none">Alertar a Central</span>
+<span class="font-headline-md text-headline-md-mobile uppercase font-bold tracking-widest mt-2 bg-on-error text-error px-4 py-1 rounded-full">Deslizar para confirmar</span>
+</button>
+</div>
+</main>
+<script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        function sendEmergencyAlert() {
+            const incidentType = document.getElementById('incident-type').value;
+            if (!incidentType || incidentType === '') {
+                alert('⚠️ Por favor seleccione un tipo de emergencia primero.');
+                return;
+            }
+            
+            // Get location info
+            const locationText = document.querySelector('.text-on-surface')?.textContent || 'ubicación actual';
+            
+            // Simulate sending emergency alert
+            const confirmed = confirm('🚨 ALERTA DE EMERGENCIA\n\n' +
+                'Tipo: ' + incidentType + '\n' +
+                'Ubicación: ' + locationText + '\n\n' +
+                '¿Desea enviar esta alerta inmediata a la central de seguridad y contactos de emergencia?');
+            
+            if (confirmed) {
+                alert('✅ Alerta de emergencia enviada exitosamente!\n\n' +
+                    'La central de seguridad ha sido notificada.\n' +
+                    'Tus contactos de emergencia han sido alertados.\n' +
+                    'Los servicios de respuesta están siendo movilizados.');
+                
+                // Reset form
+                document.getElementById('incident-type').selectedIndex = 0;
+            }
+        }
+    </script>
+</body></html>
