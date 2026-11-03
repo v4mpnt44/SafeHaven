@@ -1165,15 +1165,35 @@ flockUnirse: () => `
           <span class="material-symbols-outlined group-hover:fill-current">checkroom</span>
           <span class="font-label-caps text-label-caps mt-1">Closet</span>
         </button>
-        <!-- Active State -->
+<!-- Active State -->
         <button class="flex flex-col items-center justify-center bg-[#B2FFFF]/30 text-primary rounded-full px-4 py-1 active:scale-90 transition-transform duration-150">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
           <span class="font-label-caps text-label-caps mt-1">Profile</span>
         </button>
       </div>
     </nav>
+    <script>
+      // Perfil: populate data from sessionStorage
+      document.addEventListener('DOMContentLoaded', () => {
+        const user = sessionStorage.getItem('sh_user') || '';
+        const nombre = document.getElementById('perfil-nombre');
+        const rolEl = document.getElementById('perfil-rol');
+        const sp = document.getElementById('perfil-sp');
+        const email = document.getElementById('perfil-email');
+        const telefono = document.getElementById('perfil-telefono');
+        const location = document.getElementById('perfil-location');
+        const status = document.getElementById('perfil-status');
+        if (nombre) nombre.textContent = user.includes('@') ? user.split('@')[0] : user;
+        if (rolEl) rolEl.textContent = sessionStorage.getItem('sh_rol') || 'Guardián';
+        if (sp) sp.textContent = sessionStorage.getItem('sh_sp') || '1250';
+        if (email) email.textContent = sessionStorage.getItem('sh_email') || '';
+        if (telefono) telefono.textContent = sessionStorage.getItem('sh_phone') || '';
+        if (location) location.textContent = sessionStorage.getItem('sh_location') || '';
+        if (status) status.innerHTML = sessionStorage.getItem('sh_status') || 'Active / Protected';
+      });
+    </script>
   </body></html>`,
-
+  
   armario: () => `
   <div class="sh-page bg-[#fdf7ff]">
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-[#cbc4d2]/40 flex justify-between items-center px-6 h-16">
