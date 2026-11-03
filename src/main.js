@@ -541,8 +541,33 @@ function wire(name) {
         document.getElementById('sos-done').hidden = true;
       }, 2500);
     });
+}
+  
+  if (name === 'perfil') {
+    try {
+      const rawUser = sessionStorage.getItem('sh_user') || '';
+      const nombre = rawUser.includes('@') ? rawUser.split('@')[0] : rawUser;
+      const rol = sessionStorage.getItem('sh_rol') || 'guardian';
+      const rolLabel = rol === 'vecino' ? 'Vecino' : rol === 'coordinador' ? 'Coordinador' : 'Guardián';
+      document.getElementById('perfil-nombre').textContent = nombre;
+      document.getElementById('perfil-rol').textContent = rolLabel;
+      const sp = sessionStorage.getItem('sh_sp') || 0;
+      document.getElementById('perfil-sp').textContent = sp;
+      try {
+        document.getElementById('perfil-email').textContent = sessionStorage.getItem('sh_email') || '';
+      } catch {}
+      try {
+        document.getElementById('perfil-telefono').textContent = sessionStorage.getItem('sh_phone') || '';
+      } catch {}
+      try {
+        document.getElementById('perfil-location').textContent = sessionStorage.getItem('sh_location') || '';
+      } catch {}
+      try {
+        document.getElementById('perfil-status').textContent = sessionStorage.getItem('sh_status') || '';
+      } catch {}
+    } catch {}
   }
-
+  
   if (name === 'trayecto') {
     // El destino SIEMPRE arranca expandido para que nada quede cortado
     const sheetCtl = initBottomSheet('trayecto-sheet', 'sheet-handle', 'expanded');
