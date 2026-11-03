@@ -372,6 +372,18 @@ export const pages = {
           </div>
         </div>
       </section>
+      <section class="mt-6 space-y-3">
+        <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <a href="#/reportar-peligro-vial" class="flex-1 sh-btn-primary glass-card rounded-xl p-5 flex flex-col items-center justify-center gap-2 hover:bg-primary/10 transition-colors" aria-label="Reportar Peligro Vital">
+            <span class="material-symbols-outlined text-3xl">warning</span>
+            <span class="font-bold text-lg">Peligro Vital</span>
+          </a>
+          <a href="#/reportar-incidente" class="flex-1 sh-btn-primary glass-card rounded-xl p-5 flex flex-col items-center justify-center gap-2 hover:bg-primary/10 transition-colors" aria-label="Reportar Incidente">
+            <span class="material-symbols-outlined text-3xl">error</span>
+            <span class="font-bold text-lg">Incidente</span>
+          </a>
+        </div>
+      </section>
     </main>
     <div id="sos-confirm" hidden class="fixed inset-x-4 bottom-24 z-[70] bg-white rounded-3xl shadow-2xl border-2 border-[#ba1a1a] p-5 space-y-3">
       <h3 class="font-headline font-bold text-lg text-[#ba1a1a] text-center">¿Activar emergencia?</h3>

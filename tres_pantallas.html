@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>SafeHaven - Tres Pantallas</title>
+  <style>
+    :root {
+      --surface: #fdf7ff;
+      --primary: #4f378a;
+      --on-primary: #ffffff;
+      --error: #ba1a1a;
+      --on-error: #ffffff;
+      --surface-container: #f2ecf4;
+      --on-surface: #1d1b20;
+      --surface-container-lowest: #ffffff;
+      --tertiary: #765b00;
+      --on-tertiary: #ffffff;
+      --tertiary-container: #c9a74d;
+      --outline: #7a7582;
+      --outline-variant: #cbc4d2;
+      --secondary: #63597c;
+      --secondary-container: #e1d4fd;
+      --secondary-container-low: #f8f2fa;
+      --background: #fdf7ff;
+      --error-container: #ffdad6;
+      --on-error-container: #93000a;
+      --secondary-fixed: #e9ddff;
+      --secondary-fixed-dim: #cdc0e9;
+      --primary-fixed: #e9ddff;
+      --primary-fixed-dim: #cfbcff;
+      --primary-container: #6750a4;
+      --on-primary-container: #e0d2ff;
+      --surface-tint: #6750a4;
+      --surface-bright: #fdf7ff;
+      --surface-dim: #ded8e0;
+      --surface-container-high: #ece6ee;
+      --surface-container-highest: #e6e0e9;
+      --surface-variant: #e6e0e9;
+      --on-surface-variant: #494551;
+      --inverse-on-surface: #f5eff7;
+      --inverse-surface: #322f35;
+      --inverse-primary: #cfbcff;
+      --label-caps: #4f378a;
+      --headline-font: Hanken Grotesk;
+      --body-font: Inter;
+      --display-emergency-font: Anton;
+      --border-radius-default: 0.25rem;
+      --border-radius-lg: 0.5rem;
+      --border-radius-xl: 0.75rem;
+      --spacing-unit: 8px;
+      --stack-sm: 4px;
+      --stack-md: 12px;
+      --stack-lg: 24px;
+      --gutter: 16px;
+      --container-margin: 24px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-family: var(--body-font), sans-serif; background: var(--background); color: var(--on-surface); }
+    body { min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; }
+    
+    /* Top App Bar */
+    .top-appbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--primary); color: var(--on-primary); 
+      padding: 0 var(--gutter); height: 16px; /* will be 16px + padding */
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .top-appbar .logo { font-size: 20px; font-weight: bold; }
+    .top-appbar .nav-btn, .top-appbar .notif-btn {
+      width: 32px; height: 32px; background: rgba(255,255,255,0.2); 
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 4px; transition: background 0.2s;
+    }
+    .top-appbar .nav-btn:hover, .top-appbar .notif-btn:hover { background: rgba(255,255,255,0.3); }
+    
+    /* Main Content */
+    .main-content { margin-top: 20px; padding: var(--gutter) var(--gutter) var(200px); }
+    
+    /* Screen classes */
+    .screen { display: none; padding: var(--stack-lg) var(--gutter); border-radius: var(--border-radius-lg); margin-bottom: var(--stack-lg); }
+    .screen.active { display: block; }
+    
+    /* Header */
+    .screen h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .screen p { font-size: 14px; color: var(--on-surface-variant); margin-bottom: 16px; }
+    
+    /* Buttons */
+    .btn { display: inline-block; padding: 10px 20px; border-radius: var(--border-radius-lg); font-weight: 600; margin: 4px; cursor: pointer; transition: transform 0.1s; }
+    .btn-primary { background: var(--primary); color: var(--on-primary); border: none; }
+    .btn-primary:hover { transform: scale(1.02); }
+    .btn-secondary { background: var(--surface-container); color: var(--on-surface); border: 1px solid var(--outline-variant); }
+    .btn-secondary:hover { background: var(--surface-variant); }
+    .btn-emergency { background: var(--error); color: var(--on-error); width: 100%; padding: 16px; font-size: 16px; }
+    
+    /* Chips */
+    .chip { display: inline-block; padding: 8px 16px; border-radius: var(--border-radius-lg); margin: 4px; border: 1px solid var(--outline-variant); background: var(--surface); cursor: pointer; transition: all 0.2s; }
+    .chip.active { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+    .chip.inactive { color: var(--on-surface-variant); }
+    
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--surface); padding: var(--gutter) 0; display: flex; justify-content: space-around; }
+    .bottom-nav .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--on-surface-variant); font-size: 11px; }
+    .bottom-nav .nav-item.active { color: var(--primary); }
+    .bottom-nav .nav-item .icon { width: 24px; height: 24px; }
+    
+    /* Navigation links */
+    .nav-link { display: block; padding: 12px; border-radius: var(--border-radius-lg); margin: 4px 0; text-align: center; }
+    .nav-link.active { background: rgba(var(--primary-rgb), 0.15); color: var(--primary); }
+    
+    /* Responsive */
+    @media (max-width: 480px) { .bottom-nav { padding: var(--gutter) 8px; } }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Top App Bar -->
+    <div class="top-appbar">
+      <div class="logo">SafeHaven</div>
+      <div>
+        <div class="nav-btn" onclick="setActive('mapa')">📍</div>
+        <div class="nav-btn" onclick="setActive('flock')">👥</div>
+        <div class="nav-btn" onclick="setActive('perfil')">👤</div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Screens -->
+      <div class="screen active" id="screen-mapa">
+        <h1>Mapa Seguro</h1>
+        <p>Ver mapa de seguridad de tu comunidad</p>
+        <button class="btn btn-primary" onclick="alert('Función: Mapa Seguro)')">Ver Mapa</button>
+      </div>
+
+      <div class="screen" id="screen-flock">
+        <h1>Círculos de Confianza (Flock)</h1>
+        <p>Administra tus grupos de confianza</p>
+        <button class="btn btn-primary" onclick="alert('Función: Flock)')">Ver Flock</button>
+      </div>
+
+      <div class="screen" id="screen-perfil">
+        <h1>Perfil del Usuario</h1>
+        <p>Ver y editar tu información de perfil</p>
+        <div class="glass-card" style="background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.5);">
+          <h3>Información Personal</h3>
+          <p><strong>Nombre:</b> Alejandro González</p>
+          <p><strong>Nivel:</b> Level 5 - Guardián Vecinal</p>
+          <p><strong>Safepoints:</b> 1,250 🌟</p>
+          <p><strong>Ubicación:</b> La Pintana, Santiago</p>
+          <p><strong>Email:</b> alejandro@email.com</p>
+          <p><strong>Teléfono:</b> +56 9 1234 5678</p>
+        </div>
+        <button class="btn btn-primary" onclick="alert('Perfil editado)')'>Editar Perfil</button>
+      </div>
+
+      <div class="screen" id="screen-peligro-vial">
+        <h1>Reportar Peligro Vial</h1>
+        <p>Selecciona el tipo de incidente vial</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0;">
+          <button class="chip active" onclick="setChip(this)">Bache Profundo</button>
+          <button class="chip inactive" onclick="setChip(this)">Acera Rota</button>
+          <button class="chip inactive" onclick="setChip(this)">Semáforo Apagado</button>
+          <button class="chip inactive" onclick="setChip(this)">Otro Peligro</button>
+        </div>
+        <textarea placeholder="Detalles adicionales..."></textarea>
+        <button class="btn btn-emergency">Notificar a la Comunidad 🚘</button>
+      </div>
+
+      <div class="screen" id="screen-incidente">
+        <h1>Reportar Incidente Activo</h1>
+        <p>⚠️ <strong>Aviso Urgente</strong>: El uso de este botón enviará una alerta inmediata a la central de seguridad y a tus contactos de emergencia registrados. Úsalo solo en situaciones de riesgo real.</p>
+        <div style="background: var(--error); color: var(--on-error); padding: 16px; border-radius: var(--border-radius-lg); margin: 16px 0; font-size: 14px;">
+          <strong>Tipo de Emergencia:</strong> Seleccione una opción<br>
+          <strong>Ubicación:</strong> Detectando ubicación precisa...<br>
+          <strong>Estado:</strong> Active / Protected
+        </div>
+        <select style="width: 100%; padding: 10px; margin: 8px 0; border-radius: var(--border-radius-lg); border: 1px solid var(--outline-variant);">
+          <option value="">Seleccione una opción...</option>
+          <option value="robo">Robo / Asalto</option>
+          <option value="accidente">Accidente Médico / Tránsito</option>
+          <option value="acoso">Acoso / Peligro Inminente</option>
+        </select>
+        <button class="btn btn-emergency">Alertar a Central 🚨</button>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav" id="bottom-nav">
+      <div class="nav-item" onclick="setActive('mapa')" id="nav-mapa">Mapa<span class="icon">🗺️</span></div>
+      <div class="nav-item" onclick="setActive('flock')" id="nav-flock">Flock<span class="icon">👥</span></div>
+      <div class="nav-item active" onclick="setActive('perfil')" id="nav-perfil">Perfil<span class="icon">👤</span></div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    const screens = {
+      mapa: document.getElementById('screen-mapa'),
+      flock: document.getElementById('screen-flock'),
+      perfil: document.getElementById('screen-perfil'),
+      'peligro-vial': document.getElementById('screen-peligro-vial'),
+      incidente: document.getElementById('screen-incidente')
+    };
+    
+    const navItems = {
+      mapa: document.getElementById('nav-mapa'),
+      flock: document.getElementById('nav-flock'),
+      perfil: document.getElementById('nav-perfil')
+    };
+    
+    let activeScreen = 'mapa';
+    
+    function setActive(screenId) {
+      // Hide all screens
+      Object.values(screens).forEach(s => s.classList.remove('active'));
+      Object.values(navItems).forEach(n => n.classList.remove('active'));
+      
+      // Show selected screen
+      if (screens[screenId]) screens[screenId].classList.add('active');
+      if (navItems[screenId]) navItems[screenId].classList.add('active');
+      
+      activeScreen = screenId;
+    }
+    
+    // Initialize chips
+    function setChip(element) {
+      document.querySelectorAll('.chip').forEach(c => {
+        c.classList.remove('active', 'inactive');
+        const icon = c.querySelector('span.material-symbols-outlined');
+        if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+      });
+      element.classList.add('active');
+      const icon = element.querySelector('span.material-symbols-outlined');
+      if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+    }
+    
+    // Initialize
+    setActive('mapa');
+  </script>
+</body>
+</html>
