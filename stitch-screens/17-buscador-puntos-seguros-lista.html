@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Safe Zones - SafeHaven</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#322f35",
+                    "on-secondary-container": "#645a7d",
+                    "on-secondary-fixed-variant": "#4b4263",
+                    "surface": "#fdf7ff",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1d1b20",
+                    "error": "#ba1a1a",
+                    "background": "#fdf7ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#503d00",
+                    "outline-variant": "#cbc4d2",
+                    "surface-dim": "#ded8e0",
+                    "primary-fixed-dim": "#cfbcff",
+                    "surface-container-high": "#ece6ee",
+                    "tertiary-fixed": "#ffdf93",
+                    "on-primary-container": "#e0d2ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1d1b20",
+                    "on-secondary-fixed": "#1f1635",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-tint": "#6750a4",
+                    "tertiary": "#765b00",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "secondary-container": "#e1d4fd",
+                    "on-primary-fixed": "#22005d",
+                    "on-primary-fixed-variant": "#4f378a",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#6750a4",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "on-error": "#ffffff",
+                    "outline": "#7a7582",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e6e0e9",
+                    "primary-fixed": "#e9ddff",
+                    "tertiary-container": "#c9a74d",
+                    "secondary-fixed-dim": "#cdc0e9",
+                    "surface-container-low": "#f8f2fa",
+                    "surface-container-highest": "#e6e0e9",
+                    "secondary": "#63597c",
+                    "surface-bright": "#fdf7ff",
+                    "on-surface-variant": "#494551",
+                    "inverse-on-surface": "#f5eff7",
+                    "surface-container": "#f2ecf4",
+                    "inverse-primary": "#cfbcff",
+                    "primary": "#4f378a",
+                    "secondary-fixed": "#e9ddff",
+                    "safe-green": "#10B981" // Added specific requested green
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "gutter": "16px",
+                    "container-margin": "24px",
+                    "stack-lg": "24px",
+                    "unit": "8px",
+                    "stack-md": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "display-emergency": ["Anton"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "display-emergency": ["72px", {"lineHeight": "72px", "letterSpacing": "0.05em", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+      /* Hide scrollbar for category chips */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md text-body-md md:bg-surface-container-low min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-outline-variant/30 shadow-sm flex justify-between items-center px-container-margin h-16">
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed tracking-wider">Safe Zones</h1>
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-32 px-gutter md:px-container-margin max-w-4xl mx-auto flex flex-col gap-stack-lg">
+<!-- Category Chips (Horizontal Scroll) -->
+<section class="w-full -mx-gutter px-gutter overflow-x-auto no-scrollbar pb-2">
+<div class="flex gap-2 w-max">
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-caps text-label-caps transition-colors shadow-sm">All</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/30 font-label-caps text-label-caps shadow-sm">Shops</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/30 font-label-caps text-label-caps shadow-sm">Police</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/30 font-label-caps text-label-caps shadow-sm">Transit</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/30 font-label-caps text-label-caps shadow-sm">Hospitals</button>
+</div>
+</section>
+<!-- Safe Zones List -->
+<section class="flex flex-col gap-4">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 p-4 flex flex-col gap-4 relative overflow-hidden">
+<!-- Tactical accent border -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-safe-green"></div>
+<div class="flex justify-between items-start pl-2">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]" data-icon="storefront">storefront</span>
+</div>
+<div>
+<h2 class="font-headline-md text-[18px] leading-[24px] text-on-surface">24/7 Market Santa Rosa</h2>
+<p class="text-on-surface-variant text-[14px]">Shop • 200m</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pl-2">
+<!-- Safety Rating -->
+<div class="flex items-center gap-1 text-safe-green" title="Safety Rating: 5/5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<button class="bg-safe-green hover:bg-emerald-600 text-white font-label-caps text-label-caps px-4 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-2 active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+                        Get Directions
+                    </button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 p-4 flex flex-col gap-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start pl-2">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]" data-icon="local_police">local_police</span>
+</div>
+<div>
+<h2 class="font-headline-md text-[18px] leading-[24px] text-on-surface">Police Station North</h2>
+<p class="text-on-surface-variant text-[14px]">Police • 850m</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pl-2">
+<div class="flex items-center gap-1 text-safe-green" title="Safety Rating: 5/5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<button class="bg-safe-green hover:bg-emerald-600 text-white font-label-caps text-label-caps px-4 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-2 active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+                        Get Directions
+                    </button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 p-4 flex flex-col gap-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></div>
+<div class="flex justify-between items-start pl-2">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]" data-icon="directions_transit">directions_transit</span>
+</div>
+<div>
+<h2 class="font-headline-md text-[18px] leading-[24px] text-on-surface">Metro Terminal</h2>
+<p class="text-on-surface-variant text-[14px]">Transit • 1.2km</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pl-2">
+<div class="flex items-center gap-1 text-tertiary" title="Safety Rating: 3/5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px] text-outline-variant">shield</span>
+<span class="material-symbols-outlined text-[18px] text-outline-variant">shield</span>
+</div>
+<button class="bg-safe-green hover:bg-emerald-600 text-white font-label-caps text-label-caps px-4 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-2 active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+                        Get Directions
+                    </button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/20 p-4 flex flex-col gap-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex justify-between items-start pl-2">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]" data-icon="local_hospital">local_hospital</span>
+</div>
+<div>
+<h2 class="font-headline-md text-[18px] leading-[24px] text-on-surface">City General Hospital</h2>
+<p class="text-on-surface-variant text-[14px]">Hospital • 2.5km</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pl-2">
+<div class="flex items-center gap-1 text-safe-green" title="Safety Rating: 4/5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="material-symbols-outlined text-[18px] text-outline-variant">shield</span>
+</div>
+<button class="bg-safe-green hover:bg-emerald-600 text-white font-label-caps text-label-caps px-4 py-2 rounded-lg transition-colors shadow-sm flex items-center gap-2 active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+                        Get Directions
+                    </button>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface dark:bg-surface-container-highest fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_10px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 pb-safe px-4">
+<!-- Map - Inactive -->
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant hover:text-primary transition-all active:scale-90 duration-150 gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-caps text-label-caps">Map</span>
+</a>
+<!-- Safe Zones - Active -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150 gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-label-caps text-label-caps">Safe Zones</span>
+</a>
+<!-- Reports - Inactive -->
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant hover:text-primary transition-all active:scale-90 duration-150 gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label-caps text-label-caps">Reports</span>
+</a>
+<!-- Profile - Inactive -->
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant hover:text-primary transition-all active:scale-90 duration-150 gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<!-- Side Nav / Top Nav cluster (Desktop placeholder logic - omitted based on prompt focusing on single screen list view, but shell rules say MD hidden bottom nav implies we'd need side nav if fully mapping, but instruction says simple one page) -->
+<!-- Keeping it clean with just the mobile shell as requested by BottomNav inclusion -->
+</body></html>

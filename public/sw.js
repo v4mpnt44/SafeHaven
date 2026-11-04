@@ -1,4 +1,4 @@
-const CACHE = 'safehaven-v2';
+const CACHE = 'safehaven-v3';
 const SHELL = [
   '/',
   '/index.html',

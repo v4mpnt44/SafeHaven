@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>SafeHaven - Three Screens</title>
+  <style>
+    body { font-family: Inter, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+    .screen { border: 1px solid #ddd; margin: 20px 0; padding: 20px; border-radius: 8px; }
+    .nav { margin: 20px 0; }
+    button { padding: 10px 20px; margin: 5px; }
+  </style>
+</head>
+<body>
+  <h1>SafeHaven Community Security</h1>
+  <div class="nav">
+    <a href="reporte-peligro-vial.html">Reportar Peligro Vial</a>
+    <a href="reporte-incidente-activo.html">Reportar Incidente Activo</a>
+    <a href="perfil_usuario_safehaven.html">Perfil del Usuario</a>
+  </div>
+  <div class="screen" id="screen1">
+    <h2>Reportar Peligro Vial</h2>
+    <p>Presiona el botón "Notificar a la Comunidad" para reportar.</p>
+  </div>
+  <div class="screen" id="screen2">
+    <h2>Reportar Incidente Activo</h2>
+    <p>Emergency screen with red banner and SOS button.</p>
+  </div>
+  <div class="screen" id="screen3">
+    <h2>Perfil del Usuario</h2>
+    <p>User profile with avatar, stats, and settings.</p>
+  </div>
+  <script>
+    // Simple navigation
+    const links = document.querySelectorAll('.nav a');
+    const screens = document.querySelectorAll('.screen');
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.getAttribute('href').replace('.html', '');
+        screens.forEach(s => s.style.display = 'none');
+        if (target === 'reporte-peligro-vial') document.getElementById('screen1').style.display = 'block';
+        if (target === 'reporte-incidente-activo') document.getElementById('screen2').style.display = 'block';
+        if (target === 'perfil_usuario_safehaven') document.getElementById('screen3').style.display = 'block';
+      });
+    });
+    // Show first screen by default
+    document.getElementById('screen1').style.display = 'block';
+  </script>
+</body>
+</html>

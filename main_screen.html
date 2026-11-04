@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <title>SafeHaven - Inicio</title>
+  <style>
+    /* Estilos básicos sin Tailwind para evitar conflictos */
+    body { font-family: sans-serif; margin: 0; padding: 20px; }
+    .nav { position: fixed; bottom: 0; width: 100%; background: #f5eff7; padding: 10px; display: flex; justify-content: space-around; }
+    .nav button { background: #6750a4; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 20px; }
+    .nav button:hover { background: #4f378a; }
+    .profile-screen { display: none; position: fixed; bottom: 80px; left: 0; right: 0; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; }
+    .profile-screen.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <h1>SafeHaven - Comunidad de Seguridad</h1>
+
+  <!-- Barra de navegación inferior -->
+  <div class="nav">
+    <button onclick="showHome()">Map</button>
+    <button onclick="showFlock()">Flock</button>
+    <button onclick="showPerfil()">Perfil</button>
+  </div>
+
+  <!-- Pantalla de perfil (oculto por defecto) -->
+  <div id="profileScreen" class="profile-screen">
+    <h2>Alejandro González</h2>
+    <p>Nivel 5 - Guardián Vecinal</p>
+    <p>1,250 Safepoints 🌟</p>
+    <p>Email: alejandro@email.com</p>
+    <p>Tel: +56 9 1234 5678</p>
+    <p>Ubicación: La Pintana, Santiago</p>
+    <button onclick="hidePerfil()">Regresar</button>
+  </div>
+
+  <script>
+    function showPerfil() {
+      const screen = document.getElementById('profileScreen');
+      screen.classList.add('active');
+      screen.classList.remove('hidden');
+    }
+
+    function hidePerfil() {
+      const screen = document.getElementById('profileScreen');
+      screen.classList.add('hidden');
+      screen.classList.remove('active');
+    }
+
+    function showHome() { alert('Mapa'); }
+    function showFlock() { alert('Flock'); }
+  </script>
+
+</body>
+</html>
