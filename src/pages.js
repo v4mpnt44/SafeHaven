@@ -994,7 +994,7 @@ export const pages = {
     </main>
   </div>`,
 
-export const flockUnirse = () => `
+flockUnirse: () => `
   <div class="sh-page bg-[#fdf7ff]">
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-[#cbc4d2]/40 flex items-center justify-between px-4 h-16">
       <a href="#/flock" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#f2ecf4] text-[#494551] active:scale-95" aria-label="Volver a Flock">
@@ -1328,7 +1328,7 @@ export const flockUnirse = () => `
   </div>`;
   },
 
-export const mapa = () => `
+mapa: () => `
   <div class="sh-page bg-[#fdf7ff]">
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-[#cbc4d2]/40 flex items-center gap-2 px-4 h-16">
       <a href="#/inicio" class="p-2 text-[#4f378a] flex items-center" aria-label="Volver"><span class="material-symbols-outlined" style="font-variation-settings:'wght' 600">arrow_back</span></a>
