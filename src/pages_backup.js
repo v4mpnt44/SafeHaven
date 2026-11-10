@@ -372,6 +372,18 @@ export const pages = {
           </div>
         </div>
       </section>
+      <section class="mt-6 space-y-3">
+        <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <a href="#/reportar-peligro-vial" class="flex-1 sh-btn-primary glass-card rounded-xl p-5 flex flex-col items-center justify-center gap-2 hover:bg-primary/10 transition-colors" aria-label="Reportar Peligro Vital">
+            <span class="material-symbols-outlined text-3xl">warning</span>
+            <span class="font-bold text-lg">Peligro Vital</span>
+          </a>
+          <a href="#/reportar-incidente" class="flex-1 sh-btn-primary glass-card rounded-xl p-5 flex flex-col items-center justify-center gap-2 hover:bg-primary/10 transition-colors" aria-label="Reportar Incidente">
+            <span class="material-symbols-outlined text-3xl">error</span>
+            <span class="font-bold text-lg">Incidente</span>
+          </a>
+        </div>
+      </section>
     </main>
     <div id="sos-confirm" hidden class="fixed inset-x-4 bottom-24 z-[70] bg-white rounded-3xl shadow-2xl border-2 border-[#ba1a1a] p-5 space-y-3">
       <h3 class="font-headline font-bold text-lg text-[#ba1a1a] text-center">¿Activar emergencia?</h3>
@@ -422,6 +434,20 @@ export const pages = {
             <button id="start-btn" class="sh-btn-primary mt-2" type="button"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">directions_walk</span> Iniciar acompañamiento</button>
           </div>
           <button type="button" data-dest-demo class="text-xs font-bold tracking-widest text-[#494551] underline underline-offset-4">USAR DESTINO DEMO</button>
+          </div>
+          <div class="flex gap-3 mb-4">
+            <a href="#/reportar-peligro-vial" class="flex-1 sh-btn-secondary glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors" aria-label="Reportar Peligro Vial">
+              <span class="material-symbols-outlined text-2xl">construction</span>
+              <span class="font-bold text-xs">Peligro Vial</span>
+            </a>
+            <a href="#/reportar-incidente" class="flex-1 sh-btn-secondary glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors" aria-label="Reportar Incidente">
+              <span class="material-symbols-outlined text-2xl">warning</span>
+              <span class="font-bold text-xs">Incidente</span>
+            </a>
+            <a href="#/perfil" class="flex-1 sh-btn-secondary glass-card rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-surface-variant/50 transition-colors" aria-label="Perfil">
+              <span class="material-symbols-outlined text-2xl">person</span>
+              <span class="font-bold text-xs">Perfil</span>
+            </a>
           </div>
           <div id="bloque-llegada" hidden class="flex flex-col gap-3">
             <div class="rounded-2xl bg-[#e9ddff] border border-[#4f378a]/30 p-4">
@@ -1139,15 +1165,35 @@ flockUnirse: () => `
           <span class="material-symbols-outlined group-hover:fill-current">checkroom</span>
           <span class="font-label-caps text-label-caps mt-1">Closet</span>
         </button>
-        <!-- Active State -->
+<!-- Active State -->
         <button class="flex flex-col items-center justify-center bg-[#B2FFFF]/30 text-primary rounded-full px-4 py-1 active:scale-90 transition-transform duration-150">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
           <span class="font-label-caps text-label-caps mt-1">Profile</span>
         </button>
       </div>
     </nav>
+    <script>
+      // Perfil: populate data from sessionStorage
+      document.addEventListener('DOMContentLoaded', () => {
+        const user = sessionStorage.getItem('sh_user') || '';
+        const nombre = document.getElementById('perfil-nombre');
+        const rolEl = document.getElementById('perfil-rol');
+        const sp = document.getElementById('perfil-sp');
+        const email = document.getElementById('perfil-email');
+        const telefono = document.getElementById('perfil-telefono');
+        const location = document.getElementById('perfil-location');
+        const status = document.getElementById('perfil-status');
+        if (nombre) nombre.textContent = user.includes('@') ? user.split('@')[0] : user;
+        if (rolEl) rolEl.textContent = sessionStorage.getItem('sh_rol') || 'Guardián';
+        if (sp) sp.textContent = sessionStorage.getItem('sh_sp') || '1250';
+        if (email) email.textContent = sessionStorage.getItem('sh_email') || '';
+        if (telefono) telefono.textContent = sessionStorage.getItem('sh_phone') || '';
+        if (location) location.textContent = sessionStorage.getItem('sh_location') || '';
+        if (status) status.innerHTML = sessionStorage.getItem('sh_status') || 'Active / Protected';
+      });
+    </script>
   </body></html>`,
-
+  
   armario: () => `
   <div class="sh-page bg-[#fdf7ff]">
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-[#cbc4d2]/40 flex justify-between items-center px-6 h-16">
@@ -1598,14 +1644,7 @@ export const PUNTOS_DETALLE = {
       { nombre: "Marco A.", cuando: "Hace 3 días", texto: "Refugio seguro si necesitas esperar transporte." },
     ],
   },
-  perfil: () => {
-  const rawUser = sessionStorage.getItem('sh_user') || '';
-  const nombre = rawUser.includes('@') ? rawUser.split('@')[0] : rawUser;
-  const rol = sessionStorage.getItem('sh_rol') || 'guardian';
-  const rolLabel = rol === 'vecino' ? 'Vecino' : rol === 'coordinador' ? 'Coordinador' : 'Guardián';
-  const sp = getSP();
-  const phone = sessionStorage.getItem('sh_phone') || '+56 9 1234 5678';
-  return `
+  perfil: () => `
   <div class="sh-page" style="background:#fdf7ff">
     <header class="fixed top-0 w-full z-50 bg-primary shadow-sm text-on-primary border-b border-outline-variant/30 dark:border-outline/20">
       <div class="flex justify-between items-center px-container-margin h-16">
@@ -1719,7 +1758,7 @@ export const PUNTOS_DETALLE = {
       <!-- Menu Options -->
       <section class="flex flex-col gap-unit">
         <h3 class="font-headline-md text-headline-md text-on-surface-variant px-2 mb-2">Account Settings</h3>
-        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
+        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]" onclick="editProfile()">
           <div class="flex items-center gap-4">
             <div class="bg-secondary-container text-on-secondary-container p-3 rounded-xl">
               <span class="material-symbols-outlined">edit_document</span>
@@ -1728,7 +1767,7 @@ export const PUNTOS_DETALLE = {
           </div>
           <span class="material-symbols-outlined text-outline">chevron_right</span>
         </button>
-        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
+        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]" onclick="customizeCharacter()">
           <div class="flex items-center gap-4">
             <div class="bg-secondary-container text-on-secondary-container p-3 rounded-xl">
               <span class="material-symbols-outlined">checkroom</span>
@@ -1737,7 +1776,7 @@ export const PUNTOS_DETALLE = {
           </div>
           <span class="material-symbols-outlined text-outline">chevron_right</span>
         </button>
-        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
+        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]" onclick="viewCircles()">
           <div class="flex items-center gap-4">
             <div class="bg-secondary-container text-on-secondary-container p-3 rounded-xl">
               <span class="material-symbols-outlined">group</span>
@@ -1746,7 +1785,7 @@ export const PUNTOS_DETALLE = {
           </div>
           <span class="material-symbols-outlined text-outline">chevron_right</span>
         </button>
-        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]">
+        <button class="w-full glass-card rounded-xl p-4 flex items-center justify-between hover:bg-surface-variant/50 transition-colors active:scale-[0.98]" onclick="viewReports()">
           <div class="flex items-center gap-4">
             <div class="bg-secondary-container text-on-secondary-container p-3 rounded-xl">
               <span class="material-symbols-outlined">history</span>
@@ -1797,6 +1836,8 @@ export const bottomNav = (active) => `
   <a href="#/registro" ${active==="registro"?'aria-current="page"':""}><span class="material-symbols-outlined">person_add</span>Registro</a>
   <a href="#/login" ${active==="login"?'aria-current="page"':""}><span class="material-symbols-outlined">login</span>Entrar</a>
   <a href="#/verificar" ${active==="verificar"?'aria-current="page"':""}><span class="material-symbols-outlined">sms</span>Verificar</a>
+  <a href="#/peligro-vial" ${active==="peligro-vial"?'aria-current="page"':""}><span class="material-symbols-outlined">construction</span>Peligro Vial</a>
+  <a href="#/incidente-activo" ${active==="incidente-activo"?'aria-current="page"':""}><span class="material-symbols-outlined">error</span>Incidente Activo</a>
 </nav>`;
 
 export const appNav = (active) => `
@@ -1806,3 +1847,99 @@ export const appNav = (active) => `
   <a href="#/armario" ${active==="armario"?'aria-current="page"':""}><span class="material-symbols-outlined">styler</span>Armario</a>
   <a href="#/perfil" ${active==="perfil"?'aria-current="page"':""}><span class="material-symbols-outlined">person</span>Perfil</a>
 </nav>`;
+
+peligroVial: () => `
+<div class="sh-page sh-auth">
+  <main class="sh-shell flex-1 flex flex-col items-center justify-center px-6 py-8 w-full">
+    <div class="text-center mb-5">
+      <div class="flex justify-center mb-3">
+        <div class="w-20 h-20 bg-[#4f378a] flex items-center justify-center hex-frame brutalist-shadow">
+          <span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings:'FILL' 1">construction</span>
+        </div>
+      </div>
+      <h1 class="font-display text-5xl text-[#4f378a] tracking-tight uppercase leading-none">Reportar Peligro Vial</h1>
+      <p class="font-headline italic text-[#494551] mt-1">Ayuda a mantener las calles seguras</p>
+    </div>
+    <div class="w-full sh-card p-5 space-y-4">
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <button class="sh-btn-primary w-full rounded-xl py-3 px-4 flex items-center justify-center gap-2" onclick="selectChip(this)">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">gite</span>
+          Bache Profundo
+        </button>
+        <button class="sh-btn-secondary w-full rounded-xl py-3 px-4 flex items-center justify-center gap-2" onclick="selectChip(this)">
+          <span class="material-symbols-outlined">broken_image</span>
+          Acera Rota
+        </button>
+        <button class="sh-btn-secondary w-full rounded-xl py-3 px-4 flex items-center justify-center gap-2" onclick="selectChip(this)">
+          <span class="material-symbols-outlined">traffic</span>
+          Semáforo Apagado
+        </button>
+      </div>
+      <textarea class="sh-input w-full rounded-xl py-3 px-4 resize-none h-24" placeholder="Ej: Carril derecho bloqueado..."></textarea>
+      <div class="flex justify-end space-x-2">
+        <button class="sh-btn-primary">Notificar a la Comunidad</button>
+        <button class="sh-btn-secondary" onclick="window.history.back()">Volver</button>
+      </div>
+    </div>
+  </main>
+</div>`,
+
+incidenteActivo: () => `
+<div class="sh-page sh-auth">
+  <main class="sh-shell flex-1 flex flex-col items-center justify-center px-6 py-8 w-full">
+    <div class="bg-error border-l-8 border-error p-4 rounded-b-xl mb-4 shadow-[8px_8px_0px_rgba(186,26,26,1)]">
+      <div class="flex items-center gap-2 text-error">
+        <span class="material-symbols-outlined text-3xl font-bold" style="font-variation-settings: 'FILL' 1">warning</span>
+        <h2 class="font-headline text-error uppercase tracking-wider">Aviso Urgente</h2>
+      </div>
+      <p class="text-on-error text-sm">El uso de este botón enviará una alerta inmediata a la central de seguridad y a tus contactos de emergencia registrados. Úsalo solo en situaciones de riesgo real.</p>
+    </div>
+    <div class="sh-card p-5 space-y-4">
+      <div class="mb-4">
+        <label class="sh-label">Tipo de Emergencia</label>
+        <select class="sh-input w-full rounded-xl py-2 px-4">
+          <option value="">Seleccione una opción...</option>
+          <option value="robo">Robo / Asalto</option>
+          <option value="accidente">Accidente Médico / Tránsito</option>
+          <option value="acoso">Acoso / Peligro Inminente</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="sh-label">Ubicación Actual</label>
+        <div class="bg-surface border rounded-xl p-3 flex items-center gap-3">
+          <span class="material-symbols-outlined text-error text-2xl">my_location</span>
+          <div>
+            <p class="font-bold">Detectando ubicación precisa...</p>
+            <p class="text-[#494551] text-sm">Lat: -34.6037, Lng: -58.3816 (Aprox)</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2">
+        <button class="sh-btn-primary w-full py-3 px-4 rounded-xl shadow-md" onclick="sendEmergencyAlert()">
+          Alertar a Central
+        </button>
+        <button class="sh-btn-secondary" onclick="window.history.back()">Volver</button>
+      </div>
+    </div>
+  </main>
+</div>`,
+
+function navigate(path) {
+  window.location.hash = path;
+}
+
+function editProfile() {
+  navigate('/perfil');
+}
+
+function customizeCharacter() {
+  navigate('/armario');
+}
+
+function viewCircles() {
+  navigate('/flock');
+}
+
+function viewReports() {
+  navigate('/puntos-ambar');
+}
