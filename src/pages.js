@@ -994,7 +994,7 @@ export const pages = {
     </main>
   </div>`,
 
-flockUnirse: () => `
+export const flockUnirse = () => `
   <div class="sh-page bg-[#fdf7ff]">
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-[#cbc4d2]/40 flex items-center justify-between px-4 h-16">
       <a href="#/flock" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#f2ecf4] text-[#494551] active:scale-95" aria-label="Volver a Flock">
@@ -1328,7 +1328,7 @@ flockUnirse: () => `
   </div>`;
   },
 
-mapa: () => `
+export const mapa = () => `
   <div class="sh-page bg-[#fdf7ff]">
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-[#cbc4d2]/40 flex items-center gap-2 px-4 h-16">
       <a href="#/inicio" class="p-2 text-[#4f378a] flex items-center" aria-label="Volver"><span class="material-symbols-outlined" style="font-variation-settings:'wght' 600">arrow_back</span></a>
@@ -1848,7 +1848,7 @@ export const appNav = (active) => `
   <a href="#/perfil" ${active==="perfil"?'aria-current="page"':""}><span class="material-symbols-outlined">person</span>Perfil</a>
 </nav>`;
 
-peligroVial: () => `
+export const peligroVial = () => `
 <div class="sh-page sh-auth">
   <main class="sh-shell flex-1 flex flex-col items-center justify-center px-6 py-8 w-full">
     <div class="text-center mb-5">
@@ -1884,7 +1884,7 @@ peligroVial: () => `
   </main>
 </div>`,
 
-incidenteActivo: () => `
+export const incidenteActivo = () => `
 <div class="sh-page sh-auth">
   <main class="sh-shell flex-1 flex flex-col items-center justify-center px-6 py-8 w-full">
     <div class="bg-error border-l-8 border-error p-4 rounded-b-xl mb-4 shadow-[8px_8px_0px_rgba(186,26,26,1)]">
